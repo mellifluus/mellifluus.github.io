@@ -13,7 +13,115 @@
 </head>
 <body>
   <div class="container">
-    \(c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n)\)
+    <div class="info">
+      Massimiliano Ricci<br>
+      SE_02 Algorithms and Data Structures<br>
+      CODE University of Applied Sciences<br>
+      Fall Semester 2022
+    </div>
+    <p class="title">
+      SE_02 - Algorithms and Data Structures
+    </p>
+    <hr>
+    <div class="toc">
+      <p class="subtitle">Table of contents</p>
+      <ol>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#aat">Algorithm Analysis Theory</a>
+          <ol>
+            <li><a href="#complexities">Complexities</a></li>
+            <li><a href="#ab">Asymptotic Bounds</a>
+              <ol>
+                <li><a href="#aub">Asymptotic Upper Bound - Big-O</a></li>
+                <li><a href="#alb">Asymptotic Lower Bound - Big-Ω</a></li>
+                <li><a href="#atb">Asymptotic Tight Bound - Big-Θ</a></li>
+                <li><a href="#considerations">Considerations about Bounds</a></li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li><a href="#ads">Analysis of Data Structures</a>
+          <ol>
+            <li><a href="#">Array</a></li>
+            <li><a href="#">Linked List</a></li>
+            <li><a href="#">Queue</a></li>
+            <li><a href="#">Stack</a></li>
+            <li><a href="#">Graph</a></li>
+            <li><a href="#">Tree</a></li>
+            <li><a href="#">Hash table</a></li>
+          </ol>
+        </li>
+        <li><a href="#">Analysis of Algorithms</a>
+          <ol>
+            <li><a href="#">Search Algorithms</a>
+              <ol>
+                <li><a href="#">Linear Search</a></li>
+                <li><a href="#">Binary Search</a></li>
+              </ol>
+            </li>
+            <li><a href="#">Sorting Algorithms</a>
+              <ol>
+                <li><a href="#">Quick-sort</a></li>
+                <li><a href="#">Bubble-sort</a></li>
+                <li><a href="#">Merge-sort</a></li>
+                <li><a href="#">Selection-sort</a></li>
+              </ol>
+            </li>
+            <li><a href="#">Complex Algorithms</a>
+              <ol>
+                <li><a href="#">Djikstra's Algorithm</a></li>
+                <li><a href="#">Fast Fourier Transform</a></li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+    </div>
+    <hr>
+    <div id="introduction" class="section">
+      <p class="subtitle">1. Introduction</p>
+      <p class="text">This document is meant to illustrate how various algorithms work and the data structures that these make use of. Starting from a theoretical refresh on some important mathematical concepts (widely used in the science of analyzing algorithms), I’m going to use these concepts to analyze how complex various data structures and algorithms are. I’m also going to go over pros and cons on each and every one of them, giving an idea on which use cases suit them best.</p>
+    </div>
+    <hr>
+    <div id="aat" class="section">
+      <p class="subtitle">2. Algorithms Analysis Theory</p>
+      <p class="text">In this section, I’m going to give an overview on the practices used to analyze algorithms. It’s imprecise to just measure how much time or space an algorithms requires to run to determine its complexity. That would just give an information on how much resources the algorithm takes to execute on one specific machine, but doesn’t really give unbiased information on what’s the amount of resources required on a worse or even better machine. That is why, while analyzing algorithms, we use specific notation that allows for clearer understanding of the complexity of an algorithm.</p>
+    </div>
+    <div id="complexities" class="section">
+      <p class="subtitle">2.1. Complexities</p>
+      <p class="text">
+        There are two types of complexities to take into consideration when designing an algorithm:
+      </p>
+      <ul>
+        <li><b><i>Time complexity</i></b> - Attempts to give a broad idea of how complex a given algorithm is in correlation with its execution time.</li>
+        <li><b><i>Space complexity</i></b> - Attempts to give a broad idea of how complex a given algorithm is in correlation with the space required for its execution. It consists of two parts, which are summed together:
+          <ul>
+            <li><b><i>Auxiliary space</i></b> - Represents the amount of space used by variables and constants that are not dependent by the size of the input of the algorithm. In other words, the temporary space required.</li>
+            <li><b><i>Variable space</i></b> - Represents the amount of space used by the input size of the algorithm.</li>
+          </ul>
+        </li>
+      </ul>
+      <p class="text">
+        Both complexities can be expressed using Asymptotic Notation, which is going to be covered in depth in the next chapter. In this document, I’m going to be - almost - solely focus on the concept of time complexity.
+      </p>
+    </div>
+    <div id="ab" class="section">
+      <p class="subtitle">2.2. Asymptotic Bounds</p>
+      <p class="text">Any given algorithm takes an n amount of steps to complete. As stated before, we can’t just measure the time a step takes to complete as that wouldn’t give us a realistic complexity representation. That is why, to express the complexity of an algorithm we make use of a concept called Asymptotic Notation, which allows for a machine-independent measurement.</p>
+      <p class="text">The notation makes use of the concept of Asymptotic Bound which is, by definition, a curve representing the limit of a function where the distance between the function and the curve tends to zero.</p>
+      <p class="text">When analyzing an algorithms, we’re interested in three types of bounds (each with its own notation).</p>
+    </div>
+    <div id="aub" class="section">
+      <p class="subtitle">2.2.1. Asymptotic Upper Bound - \(Big\mbox{-}O\)</p>
+      <div class="section_flex">
+        <div class="section_text">
+          <p class="text">The upper bound, which can also be referred to as \(Big\mbox{-}O\) or just \(O\) represents the worst-case scenario in the running time of an algorithm. Let’s say \(f(n)\) describes the running time of an algorithm; we can then say that \(f(n)\) is \(O(g(n))\) if and only if a constant \(c\) exists such that \(c \cdot g(n) \geq f(n)\) for all \(n \geq n_0\).</p>
+          <p class="text">In mathematical terms, we can then define \(Big\mbox{-}O\) as follows:</p>
+          <p class="text">\(f(n) = O(g(n)) \iff c \cdot g(n) \geq f(n) \;\; \forall \;\; n \geq n_0 \)</p>
+          <p class="text">More than often, there is more than one function that is suitable as \(Big\mbox{-}O\) for one algorithm, but we’re interested in the tightest (closer) upper bounding function among them, since it gives us a more realistic idea of the worst-case running time of a function.</p>
+        </div>
+        <img src="img/upper.png" alt="Graph representing an example of upper bounding function for f(n)">
+      </div>
+    </div>
   </div>
 </body>
 </html>
