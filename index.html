@@ -4,17 +4,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="reset.css">
-  <link rel="stylesheet" href="style.css">
-  <script type="text/javascript" async src="MathJax/tex-chtml.js"></script>
-  <script>
-    (async() => {
-      while(!window.hasOwnProperty("MathJax"))  {
-        await new Promise(resolve => setTimeout(resolve, 100));
-      }
-      MathJax.Hub.Register.StartupHook("End", () => console.log('Maths loaded'));
-    })();
-  </script>
+  <link rel="stylesheet" href="src/styles/reset.css">
+  <link rel="stylesheet" href="src/styles/style.css">
+  <link rel="stylesheet" href="src/styles/highlight.min.css">
+  <script type="text/javascript" async src="src/scripts/MathJax/tex-chtml.js"></script>
+  <script src="src/scripts/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
   <title>Algorithms and Data Structures</title>
 </head>
 <body>
@@ -48,13 +43,14 @@
         </li>
         <li><a href="#ads">Analysis of Data Structures</a>
           <ol>
-            <li><a href="#">Array</a></li>
-            <li><a href="#">Linked List</a></li>
-            <li><a href="#">Queue</a></li>
-            <li><a href="#">Stack</a></li>
-            <li><a href="#">Graph</a></li>
-            <li><a href="#">Tree</a></li>
-            <li><a href="#">Hash table</a></li>
+            <li><a href="#array">Array</a></li>
+            <li><a href="#linked">Linked List</a></li>
+            <li><a href="#queue">Queue</a></li>
+            <li><a href="#stack">Stack</a></li>
+            <li><a href="#graph">Graph</a></li>
+            <li><a href="#tree">Tree</a></li>
+            <li><a href="#hash">Hash table</a></li>
+            <li><a href="#heap">Heap</a></li>
           </ol>
         </li>
         <li><a href="#">Analysis of Algorithms</a>
@@ -86,6 +82,7 @@
     <div id="introduction" class="section">
       <p class="subtitle">1. Introduction</p>
       <p class="text">This document is meant to illustrate how various algorithms work and the data structures that these make use of. Starting from a theoretical refresh on some important mathematical concepts (widely used in the science of analyzing algorithms), I’m going to use these concepts to analyze how complex various data structures and algorithms are. I’m also going to go over pros and cons on each and every one of them, giving an idea on which use cases suit them best.</p>
+      <p class="text">Needless to say, this document requires basic understanding of programming (going to demonstrate concepts with Python in some cases) and a basic mathematical knowledge.</p>
     </div>
     <hr>
     <div id="aat" class="section">
@@ -171,11 +168,22 @@
           <p class="text">\(1 \ll log(n) \ll n \ll n \cdot log(n) \ll n^2 \ll 2^n \ll n!\)</p>
         </div>
         <div>
-          <img src="img/dominance.png" alt="Graph representing an example of tight bounding function for f(n)">
+          <img src="img/dominance.png" alt="Graph representing the growth of various general functions given an input n">
           <p class="img_caption">fig. 4</p>
         </div>
       </div>
     </div>
+    <hr>
+    <div id="ads" class="section">
+      <p class="subtitle">3. Analysis of Data Structures</p><a href="#" class="top">&#8679;</a>
+      <p class="text">Data structures are the foundation of most algorithms. They provide a way to store, organize and retrieve data, and each of them has different functionalities, advantages and disadvantages. Knowing how common data structures work and how complex it is to do various operations on them is extremely important for algorithm design - since a programmer should choose one according to the particular use-case.</p>
+      <p class="text">I'm not jumping straight to algorithm analysis </p>
+      
+    </div>
   </div>
 </body>
 </html>
+<!-- <pre><code class="language-python">  
+      for i in range(x):
+        print(x)
+      </code></pre> -->

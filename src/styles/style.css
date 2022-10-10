@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
 
+html{
+  scroll-behavior:smooth;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -76,4 +80,13 @@ a:active {
 .subtitle {
   font-size: 1.5rem;
   font-weight: 400;
+  display: inline-block;
+}
+
+.top {
+  float: right;
+}
+
+code {
+  padding: 0 !important;
 }
