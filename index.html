@@ -6,13 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="src/styles/reset.css">
   <link rel="stylesheet" href="src/styles/style.css">
-  <link rel="stylesheet" href="src/styles/highlight.min.css">
   <script type="text/javascript" async src="src/scripts/MathJax/tex-chtml.js"></script>
-  <script src="src/scripts/highlight.min.js"></script>
-  <script>hljs.highlightAll();</script>
   <title>Algorithms and Data Structures</title>
 </head>
 <body>
+  <a href="#top"><div class="top"></div></a>
   <div class="container">
     <div class="info">
       Massimiliano Ricci<br>
@@ -23,7 +21,7 @@
     <p class="title">
       SE_02 - Algorithms and Data Structures
     </p>
-    <hr>
+    <hr id="top">
     <div class="toc">
       <p class="subtitle">Table of contents</p>
       <ol>
@@ -81,17 +79,17 @@
     <hr>
     <div id="introduction" class="section">
       <p class="subtitle">1. Introduction</p>
-      <p class="text">This document is meant to illustrate how various algorithms work and the data structures that these make use of. Starting from a theoretical refresh on some important mathematical concepts (widely used in the science of analyzing algorithms), I’m going to use these concepts to analyze how complex various data structures and algorithms are. I’m also going to go over pros and cons on each and every one of them, giving an idea on which use cases suit them best.</p>
-      <p class="text">Needless to say, this document requires basic understanding of programming (going to demonstrate concepts with Python in some cases) and a basic mathematical knowledge.</p>
+      <p>This document is meant to illustrate how various algorithms work and the data structures that these make use of. Starting from a theoretical refresh on some important mathematical concepts (widely used in the science of analyzing algorithms), I’m going to use these concepts to analyze how complex various data structures and algorithms are. I’m also going to go over pros and cons on each and every one of them, giving an idea on which use cases suit them best.</p>
+      <p>Needless to say, this document requires basic understanding of programming (going to demonstrate concepts with Python in some cases) and a basic mathematical knowledge.</p>
     </div>
     <hr>
     <div id="aat" class="section">
       <p class="subtitle">2. Algorithms Analysis Theory</p>
-      <p class="text">In this section, I’m going to give an overview on the practices used to analyze algorithms. It’s imprecise to just measure how much time or space an algorithms requires to run to determine its complexity. That would just give an information on how much resources the algorithm takes to execute on one specific machine, but doesn’t really give unbiased information on what’s the amount of resources required on a worse or even better machine. That is why, while analyzing algorithms, we use specific notation that allows for clearer understanding of the complexity of an algorithm.</p>
+      <p>In this section, I’m going to give an overview on the practices used to analyze algorithms. It’s imprecise to just measure how much time or space an algorithms requires to run to determine its complexity. That would just give an information on how much resources the algorithm takes to execute on one specific machine, but doesn’t really give unbiased information on what’s the amount of resources required on a worse or even better machine. That is why, while analyzing algorithms, we use specific notation that allows for clearer understanding of the complexity of an algorithm.</p>
     </div>
     <div id="complexities" class="section">
       <p class="subtitle">2.1. Complexities</p>
-      <p class="text">
+      <p>
         There are two types of complexities to take into consideration when designing an algorithm:
       </p>
       <ul>
@@ -103,24 +101,24 @@
           </ul>
         </li>
       </ul>
-      <p class="text">
+      <p>
         Both complexities can be expressed using Asymptotic Notation, which is going to be covered in depth in the next chapter. In this document, I’m going to be - almost - solely focus on the concept of time complexity.
       </p>
     </div>
     <div id="ab" class="section">
       <p class="subtitle">2.2. Asymptotic Bounds</p>
-      <p class="text">Any given algorithm takes an n amount of steps to complete. As stated before, we can’t just measure the time a step takes to complete as that wouldn’t give us a realistic complexity representation. That is why, to express the complexity of an algorithm we make use of a concept called Asymptotic Notation, which allows for a machine-independent measurement.</p>
-      <p class="text">The notation makes use of the concept of Asymptotic Bound which is, by definition, a curve representing the limit of a function where the distance between the function and the curve tends to zero.</p>
-      <p class="text">When analyzing an algorithms, we’re interested in three types of bounds (each with its own notation).</p>
+      <p>Any given algorithm takes an n amount of steps to complete. As stated before, we can’t just measure the time a step takes to complete as that wouldn’t give us a realistic complexity representation. That is why, to express the complexity of an algorithm we make use of a concept called Asymptotic Notation, which allows for a machine-independent measurement.</p>
+      <p>The notation makes use of the concept of Asymptotic Bound which is, by definition, a curve representing the limit of a function where the distance between the function and the curve tends to zero.</p>
+      <p>When analyzing an algorithms, we’re interested in three types of bounds (each with its own notation).</p>
     </div>
     <div id="aub" class="section">
       <p class="subtitle">2.2.1. Asymptotic Upper Bound - \(Big\mbox{-}O\)</p>
-      <div class="section_grid">
+      <div class="text_img_aligned">
         <div>
-          <p class="text">The upper bound, which can also be referred to as \(Big\mbox{-}O\) or just \(O\) represents the worst-case scenario in the running time of an algorithm. Let’s say \(f(n)\) describes the running time of an algorithm; we can then say that \(f(n)\) is \(O(g(n))\) if and only if a constant \(c\) exists such that \(c \cdot g(n) \geq f(n)\) for all \(n \geq n_0\).</p>
-          <p class="text">In mathematical terms, we can then define \(Big\mbox{-}O\) as follows:</p>
-          <p class="text">\(f(n) = O(g(n)) \iff c \cdot g(n) \geq f(n) \;\; \forall \;\; n \geq n_0 \)</p>
-          <p class="text">More than often, there is more than one function that is suitable as \(Big\mbox{-}O\) for one algorithm, but we’re interested in the tightest (closer) upper bounding function among them, since it gives us a more realistic idea of the worst-case running time of a function.</p>
+          <p>The upper bound, which can also be referred to as \(Big\mbox{-}O\) or just \(O\) represents the worst-case scenario in the running time of an algorithm. Let’s say \(f(n)\) describes the running time of an algorithm; we can then say that \(f(n)\) is \(O(g(n))\) if and only if a constant \(c\) exists such that \(c \cdot g(n) \geq f(n)\) for all \(n \geq n_0\).</p>
+          <p>In mathematical terms, we can then define \(Big\mbox{-}O\) as follows:</p>
+          <p>\(f(n) = O(g(n)) \iff c \cdot g(n) \geq f(n) \;\; \forall \;\; n \geq n_0 \)</p>
+          <p>More than often, there is more than one function that is suitable as \(Big\mbox{-}O\) for one algorithm, but we’re interested in the tightest (closer) upper bounding function among them, since it gives us a more realistic idea of the worst-case running time of a function.</p>
         </div>
         <div>
           <img src="img/upper.png" alt="Graph representing an example of upper bounding function for f(n)">
@@ -130,12 +128,12 @@
     </div>
     <div id="alb" class="section">
       <p class="subtitle">2.2.2. Asymptotic Lower Bound - \(Big\mbox{-}\Omega\)</p>
-      <div class="section_grid">
+      <div class="text_img_aligned">
         <div>
-          <p class="text">The lower bound, which can also be referred to as \(Big\mbox{-}\Omega\) or just \(\Omega\) represents the best-case scenario in the running time of an algorithm. Let’s say \(f(n)\) describes the running time of an algorithm; we can then say that \(f(n)\) is \(\Omega(g(n))\) if and only if a constant \(c\) exists such that \(c \cdot g(n) \leq f(n)\) for all \(n \geq n_0\).</p>
-          <p class="text">In mathematical terms, we can then define \(Big\mbox{-}\Omega\) as follows:</p>
-          <p class="text">\(f(n) = \Omega(g(n)) \iff c \cdot g(n) \leq f(n) \;\; \forall \;\; n \geq n_0 \)</p>
-          <p class="text">Again, there is usually more than one function that is suitable as \(Big\mbox{-}\Omega\) for one algorithm, but we’re interested in the tightest (closer) lower bounding function among them, since it gives us a more realistic idea of the best-case running time of a function.</p>
+          <p>The lower bound, which can also be referred to as \(Big\mbox{-}\Omega\) or just \(\Omega\) represents the best-case scenario in the running time of an algorithm. Let’s say \(f(n)\) describes the running time of an algorithm; we can then say that \(f(n)\) is \(\Omega(g(n))\) if and only if a constant \(c\) exists such that \(c \cdot g(n) \leq f(n)\) for all \(n \geq n_0\).</p>
+          <p>In mathematical terms, we can then define \(Big\mbox{-}\Omega\) as follows:</p>
+          <p>\(f(n) = \Omega(g(n)) \iff c \cdot g(n) \leq f(n) \;\; \forall \;\; n \geq n_0 \)</p>
+          <p>Again, there is usually more than one function that is suitable as \(Big\mbox{-}\Omega\) for one algorithm, but we’re interested in the tightest (closer) lower bounding function among them, since it gives us a more realistic idea of the best-case running time of a function.</p>
         </div>
         <div>
           <img src="img/lower.png" alt="Graph representing an example of lower bounding function for f(n)">
@@ -145,12 +143,12 @@
     </div>
     <div id="atb" class="section">
       <p class="subtitle">2.2.3. Asymptotic Tight Bound - \(Big\mbox{-}\Theta\)</p>
-      <div class="section_grid">
+      <div class="text_img_aligned">
         <div>
-          <p class="text">The tight bound, which can also be referred to as \(Big\mbox{-}\Theta\) or just \(\Theta\) represents the average-case scenario in the running time of an algorithm. Let’s say \(f(n)\) describes the running time of an algorithm; we can then say that \(f(n)\) is \(\Theta(g(n))\) if and only if two constants \(c_1, c_2\) exist such that \(c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n)\) for all \(n \geq n_0\).</p>
-          <p class="text">In mathematical terms, we can then define \(Big\mbox{-}\Theta\) as follows:</p>
-          <p class="text">\(f(n) = \Theta(g(n)) \iff c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n) \;\; \forall \;\; n \geq n_0\)</p>
-          <p class="text">Naively, the asymptotic tight bound is a function which, when multiplied by two different constants, manages to “sandwich” \(f(n)\).</p>
+          <p>The tight bound, which can also be referred to as \(Big\mbox{-}\Theta\) or just \(\Theta\) represents the average-case scenario in the running time of an algorithm. Let’s say \(f(n)\) describes the running time of an algorithm; we can then say that \(f(n)\) is \(\Theta(g(n))\) if and only if two constants \(c_1, c_2\) exist such that \(c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n)\) for all \(n \geq n_0\).</p>
+          <p>In mathematical terms, we can then define \(Big\mbox{-}\Theta\) as follows:</p>
+          <p>\(f(n) = \Theta(g(n)) \iff c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n) \;\; \forall \;\; n \geq n_0\)</p>
+          <p>Naively, the asymptotic tight bound is a function which, when multiplied by two different constants, manages to “sandwich” \(f(n)\).</p>
         </div>
         <div>
           <img src="img/tight.png" alt="Graph representing an example of tight bounding function for f(n)">
@@ -160,12 +158,12 @@
     </div>
     <div id="considerations" class="section">
       <p class="subtitle">2.2.4. Considerations about Bounds</p>
-      <div class="section_grid">
+      <div class="text_img_aligned">
         <div>
-          <p class="text">Later in this document, I’m going to to analyze various trivial and non-trivial algorithms using a technique called operation-count method which involves counting the number of primitive operations in an algorithm and summing them all together. The result usually consists of many constants other than the input size \(n\).</p>
-          <p class="text">Since for \(n \rightarrow \infty\) constants are much less dominant than \(n\), we approximate bounding functions to general classes of functions, some of them are shown in fig. 4.</p>
-          <p class="text">The general order of dominance of these function is as follows:</p>
-          <p class="text">\(1 \ll log(n) \ll n \ll n \cdot log(n) \ll n^2 \ll 2^n \ll n!\)</p>
+          <p>Later in this document, I’m going to to analyze various trivial and non-trivial algorithms using a technique called operation-count method which involves counting the number of primitive operations in an algorithm and summing them all together. The result usually consists of many constants other than the input size \(n\).</p>
+          <p>Since for \(n \rightarrow \infty\) constants are much less dominant than \(n\), we approximate bounding functions to general classes of functions, some of them are shown in fig. 4.</p>
+          <p>The general order of dominance of these function is as follows:</p>
+          <p>\(1 \ll log(n) \ll n \ll n \cdot log(n) \ll n^2 \ll 2^n \ll n!\)</p>
         </div>
         <div>
           <img src="img/dominance.png" alt="Graph representing the growth of various general functions given an input n">
@@ -175,15 +173,99 @@
     </div>
     <hr>
     <div id="ads" class="section">
-      <p class="subtitle">3. Analysis of Data Structures</p><a href="#" class="top">&#8679;</a>
-      <p class="text">Data structures are the foundation of most algorithms. They provide a way to store, organize and retrieve data, and each of them has different functionalities, advantages and disadvantages. Knowing how common data structures work and how complex it is to do various operations on them is extremely important for algorithm design - since a programmer should choose one according to the particular use-case.</p>
-      <p class="text">I'm not jumping straight to algorithm analysis </p>
-      
+      <p class="subtitle">3. Analysis of Data Structures</p>
+      <p>Data structures are the foundation of most algorithms. They provide a way to store, organize and retrieve data, and each of them has different functionalities, advantages and disadvantages. Knowing how common data structures work and how complex it is to do various operations on them is extremely important for algorithm design - thus I'm going to cover them before the Algorithm Analysis section.</p>
+      <p>Data structures can be classified in primitive and non-primitive structures:</p>
+      <ul>
+        <li><b><i>Primitive Data Structures</i></b> - They're the building block on which non-primitive data structures a built on. They hold one value (i.e. Integer, Float, Boolean...) in a specific location in memory.</li>
+        <li><b><i>Non-primitive Data Structures</i></b> - They're based on primitive data structures, and can be seen as collections of them. They classify in contiguous and linked structures:
+          <ul>
+            <li><b><i>Contiguous Data Structures</i></b> - They store data in contiguous (adjacent) locations in memory. The most known example is the <i>Array</i> data structure.</li>
+            <li><b><i>Linked Data Structures</i></b> - They store data in random locations in memory. Each memory cell stores a value and one or more memory pointers to other elements. The most known example is the <i>Linked List</i> data structure.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div id="array" class="section">
+      <p class="subtitle">3.1. Array</p>
+      <div class="text_two_images_below" style="grid-template-columns: 6fr 4fr;">
+        <div>
+          <p>Arrays are contiguous data structures, meaning that the data they hold is located in contiguous memory locations. This makes accessing the elements in the array efficient, since each one of them is assigned an index (<i>fig.5</i>). Two dimensional arrays (<i>fig. 6</i>) can be used to represent matrixes in code by having an array which has other arrays as its elements.</p>
+          <p>Arrays have different properties depending on the programming language implementation. In C, for example, arrays have a fixed size and only allow elements of one data type. In Javascript instead, their size is dynamic (their size doubles every time they're full) and the developer is allowed to store whatever type they prefer into them.</p>
+        </div>
+        <div>
+          <img src="img/array.png" alt="Figure depicting an array with five elements, with indexes from 0 to 4 on top of each cell.">
+          <p class="img_caption">fig. 5</p>
+        </div>
+        <div>
+          <img src="img/matrix.png" alt="Figure depicting a matrix with 3 rows and 5 columns, with coordinates inside of each cell.">
+          <p class="img_caption">fig. 6</p>
+        </div>
+      </div>
+      <p>Arrays are an extremely common data structure, and other structures, that we're going to look into later are based on them.</p>
+      <p>Talking about space, they're extremely efficient since they contain only data at every index.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Array length = \(n\)</th>
+            <th>Time complexity</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Access</td>
+            <td>\(O(1)\)</td>
+            <td>Thanks to arrays indexing, accessing an element happens in constant time.</td>
+          </tr>
+          <tr>
+            <td>Search</td>
+            <td>\(O(n)\)</td>
+            <td>Linear search for an element requires traversing the whole array in the worst case.</td>
+          </tr>
+          <tr>
+            <td>Insert</td>
+            <td>\(O(n)\)</td>
+            <td>Insertion of an element requires, in the worst case, shifting all other elements of the array by one.</td>
+          </tr>
+          <tr>
+            <td>Delete</td>
+            <td>\(O(n)\)</td>
+            <td>Deletion of an element requires, in the worst case, shifting all other elements of the array by one.</td>
+          </tr>
+          <tr>
+            <td>Update</td>
+            <td>\(O(1)\)</td>
+            <td>Updating an alement requires access - \(O(1)\) - and then updating the accessed value.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="linked" class="section">
+      <p class="subtitle">3.2. Linked List</p>
+      <div class="text_four_images_below">
+        <div>
+          <p>Linked Lists are non-linear data structures, which means that, even though they're a collection of data, they don't store it in contiguous memory locations. They instead make use of pointers to keep track of every element in the list, which are themselves stored as part of each element.</p>
+          <p>As in <i>fig. 7</i>, the first element is named "HEAD" of the list, and that's the only element that the structure itself needs to keep a reference of, since all subsequent elements are keeping references of each other.</p>
+        </div>
+        <div>
+          <img src="img/slinked.png" alt="Figure depicting a singly Linked List">
+          <p class="img_caption">fig. 7 - Singly linked list</p>
+        </div>
+        <div>
+          <img src="img/dlinked.png" alt="Figure depicting a doubly Linked List">
+          <p class="img_caption">fig. 8 - Doubly linked list</p>
+        </div>
+        <div>
+          <img src="img/sclinked.png" alt="Figure depicting a singly circular Linked List">
+          <p class="img_caption">fig. 9 - Circular singly linked list</p>
+        </div>
+        <div>
+          <img src="img/dclinked.png" alt="Figure depicting a doubly circular Linked List">
+          <p class="img_caption">fig. 10 - Circular doubly linked list</p>
+        </div>
+      </div>
     </div>
   </div>
 </body>
 </html>
-<!-- <pre><code class="language-python">  
-      for i in range(x):
-        print(x)
-      </code></pre> -->
