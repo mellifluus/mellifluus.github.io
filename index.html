@@ -6,12 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="src/styles/reset.css">
   <link rel="stylesheet" href="src/styles/style.css">
+  <link href="src/styles/prism.css" rel="stylesheet" />
   <script type="text/javascript" async src="src/scripts/MathJax/tex-chtml.js"></script>
+  <script src="src/scripts/prism.js" defer></script>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <title>Algorithms and Data Structures</title>
 </head>
 <body>
   <a href="#top"><div class="top"></div></a>
-  <div class="container">
+  <div class="container line-numbers" data-prismjs-copy="Copy to clipboard" data-prismjs-copy-success="✅" data-prismjs-copy-timeout="1000">
     <div class="info">
       Massimiliano Ricci<br>
       SE_02 Algorithms and Data Structures<br>
@@ -43,12 +46,12 @@
           <ol>
             <li><a href="#array">Array</a></li>
             <li><a href="#linked">Linked List</a></li>
-            <li><a href="#queue">Queue</a></li>
             <li><a href="#stack">Stack</a></li>
-            <li><a href="#graph">Graph</a></li>
+            <li><a href="#queue">Queue</a></li>
             <li><a href="#tree">Tree</a></li>
-            <li><a href="#hash">Hash table</a></li>
             <li><a href="#heap">Heap</a></li>
+            <li><a href="#graph">Graph</a></li>
+            <li><a href="#hash">Hash table</a></li>
           </ol>
         </li>
         <li><a href="#">Analysis of Algorithms</a>
@@ -195,19 +198,18 @@
         </div>
         <div>
           <img src="img/array.png" alt="Figure depicting an array with five elements, with indexes from 0 to 4 on top of each cell.">
-          <p class="img_caption">fig. 5</p>
+          <p class="img_caption">fig. 5 - Array</p>
         </div>
         <div>
           <img src="img/matrix.png" alt="Figure depicting a matrix with 3 rows and 5 columns, with coordinates inside of each cell.">
-          <p class="img_caption">fig. 6</p>
+          <p class="img_caption">fig. 6 - 2D Array</p>
         </div>
       </div>
-      <p>Arrays are an extremely common data structure, and other structures, that we're going to look into later are based on them.</p>
-      <p>Talking about space, they're extremely efficient since they contain only data at every index.</p>
+      <p>Arrays are an extremely common data structure, and other structures, that we're going to look into later are based on them. <br> Space complexity-wise, they're extremely efficient since they contain only data at every index.</p>
       <table>
         <thead>
           <tr>
-            <th>Array length = \(n\)</th>
+            <th>Input size = \(n\)</th>
             <th>Time complexity</th>
             <th>Why?</th>
           </tr>
@@ -245,8 +247,7 @@
       <p class="subtitle">3.2. Linked List</p>
       <div class="text_four_images_below">
         <div>
-          <p>Linked Lists are non-linear data structures, which means that, even though they're a collection of data, they don't store it in contiguous memory locations. They instead make use of pointers to keep track of every element in the list, which are themselves stored as part of each element.</p>
-          <p>As in <i>fig. 7</i>, the first element is named "HEAD" of the list, and that's the only element that the structure itself needs to keep a reference of, since all subsequent elements are keeping references of each other.</p>
+          <p>Linked Lists are non-linear data structures which means that, even though they're a collection of data, they don't store it in contiguous memory locations. They instead make use of pointers to keep track of every element in the list, which are themselves stored as part of each element. <br> The first element of the list is the "HEAD" of the list, and that's the only element that the structure itself needs to keep a reference of, since all subsequent elements are keeping references of each other.</p>
         </div>
         <div>
           <img src="img/slinked.png" alt="Figure depicting a singly Linked List">
@@ -265,6 +266,151 @@
           <p class="img_caption">fig. 10 - Circular doubly linked list</p>
         </div>
       </div>
+      <div class="text_code">
+        <div>
+          <p>Depending on the use case, there is a couple ways to structure a linked list to best suit the needs of the developer:</p>
+          <ul>
+            <li><b><i>Singly linked list (fig. 7)</i></b> - It's a linked list where every node points at the next one, creating a unidirectional chain.</li>
+            <li><b><i>Doubly linked list (fig. 8)</i></b> - It's a linked list where every node points at the previous and at the next one, creating a bidirectional chain.</li>
+            <li><b><i>Circular linked list</i></b> - It's a linked list where its nodes create a closed loop, it can be singly or doubly linked:
+              <ul>
+                <li><b><i>Circular singly linked list (fig. 9)</i></b> - It's a singly linked list where the last node points back at the first node (HEAD node)</li>
+                <li><b><i>Circular doubly linked list (fig. 10)</i></b> - It's a doubly linked list where the last node points back at the first node (HEAD node), and the first node points to the last node in the chain.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <pre data-src="src/code/linkedlist.cpp"></pre>
+          <p class="img_caption">C++ implementation of singly Linked List</p>
+        </div>
+      </div>
+      <p>Space complexity wise linked lists are obviously not better than arrays - since every node stores one or two pointers other than the actual data. Often however, the advantage of having a dinamically sized collection of elements outweighs the space disadvantages. <br> In the table below, for the Insert, Delete, and Update operation complexities, I'm taking into consideration the sole operation, without taking into account that each one of them requires first of all accessing the node, with a complexity of \(O(n)\).</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Input size = \(n\)</th>
+            <th>Time complexity</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Access</td>
+            <td>\(O(n)\)</td>
+            <td>Linked list doesn't offer direct access to a node, so we have to traverse it every time.</td>
+          </tr>
+          <tr>
+            <td>Search</td>
+            <td>\(O(n)\)</td>
+            <td>Searching for an element still runs into the problem of having to traverse the whole list in the worst case.</td>
+          </tr>
+          <tr>
+            <td>Insert</td>
+            <td>\(O(1)\)</td>
+            <td>Insertion of an element just requires setting, in the worse case, two pointers. There is no node shifting.</td>
+          </tr>
+          <tr>
+            <td>Delete</td>
+            <td>\(O(1)\)</td>
+            <td>Deletion of an element just requires setting, in the worse case, two pointers. There is no node shifting.</td>
+          </tr>
+          <tr>
+            <td>Update</td>
+            <td>\(O(1)\)</td>
+            <td>Updating an alement requires constant time after accessing the said element.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="stack" class="section">
+      <p class="subtitle">3.3. Stack</p>
+      <div class="text_img_aligned" style="grid-template-columns: 1fr 2fr;">
+        <div>
+          <img src="img/stack.png" alt="Figure depicting a Stack">
+          <p class="img_caption">fig. 11 - Stack</p>
+        </div>
+        <div>
+          <p>Stacks can be implemented using either an array or a linked list and of course each implementation comes with its advantages and its disadvantages - which are going to be discussed soon.</p>
+          <p>A stack can be visualized like a pile of heavy books. I can add one more book to it, I can take one book from it, but I can't take the books which are lower in the pile until I relieve them of the weight on them. In computer science, this principle is called L.I.F.O. (Last In, First Out).</p>
+          <p></p>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Input size = \(n\)</th>
+            <th>Time complexity</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Traverse</td>
+            <td>\(O(n)\)</td>
+            <td>Stacks, like linked lists, have to be traversed node by node.</td>
+          </tr>
+          <tr>
+            <td>Push</td>
+            <td>\(O(1)\)</td>
+            <td>To push an element on top of the stack, we just have to reference the element two times.</td>
+          </tr>
+          <tr>
+            <td>Dequeue</td>
+            <td>\(O(1)\)</td>
+            <td>Dequeuing an element is just a matter of </td>
+          </tr>
+          <tr>
+            <td>Delete</td>
+            <td>\(O(1)\)</td>
+            <td>Deletion of an element just requires setting, in the worse case, two pointers. There is no node shifting.</td>
+          </tr>
+          <tr>
+            <td>Update</td>
+            <td>\(O(1)\)</td>
+            <td>Updating an alement requires constant time after accessing the said element.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="queue" class="section">
+      <p class="subtitle">3.4. Queue</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Input size = \(n\)</th>
+            <th>Time complexity</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Traverse</td>
+            <td>\(O(n)\)</td>
+            <td>Queues, like linked lists, have to be traversed node by node.</td>
+          </tr>
+          <tr>
+            <td>Enqueue</td>
+            <td>\(O(1)\)</td>
+            <td>To enqueue an element, we just have to reference the element two times.</td>
+          </tr>
+          <tr>
+            <td>Dequeue</td>
+            <td>\(O(1)\)</td>
+            <td>Dequeuing an element is just a matter of </td>
+          </tr>
+          <tr>
+            <td>Delete</td>
+            <td>\(O(1)\)</td>
+            <td>Deletion of an element just requires setting, in the worse case, two pointers. There is no node shifting.</td>
+          </tr>
+          <tr>
+            <td>Update</td>
+            <td>\(O(1)\)</td>
+            <td>Updating an alement requires constant time after accessing the said element.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </body>

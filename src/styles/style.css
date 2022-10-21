@@ -22,6 +22,12 @@ hr {
   margin: 20px 0;
 }
 
+pre {
+  border-radius: 5px;
+  max-height: 400px;
+  max-width: 500px;
+}
+
 a, 
 a:visited, 
 a:hover, 
@@ -83,6 +89,12 @@ table tbody tr:nth-of-type(even) {
   margin-bottom: 40px;
 }
 
+.text_code {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 40px;
+}
+
 .text_img_aligned {
   display: grid;
   grid-template-columns: 3fr 1fr;
@@ -116,7 +128,7 @@ table tbody tr:nth-of-type(even) {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   height: repeat(3, min-content);
-  grid-gap: 40px;
+  grid-gap: 0 40px;
 }
 
 .text_four_images_below div:first-child {
