@@ -60,6 +60,7 @@
               <ol>
                 <li><a href="#">Linear Search</a></li>
                 <li><a href="#">Binary Search</a></li>
+                <li><a href="#">Depth-First Search</a></li>
               </ol>
             </li>
             <li><a href="#">Sorting Algorithms</a>
@@ -73,6 +74,7 @@
             <li><a href="#">Complex Algorithms</a>
               <ol>
                 <li><a href="#">Djikstra's Algorithm</a></li>
+                <li><a href="#">A* Algorithm</a></li>
                 <li><a href="#">Fast Fourier Transform</a></li>
               </ol>
             </li>
@@ -331,9 +333,24 @@
           <p class="img_caption">fig. 11 - Stack</p>
         </div>
         <div>
-          <p>Stacks can be implemented using either an array or a linked list and of course each implementation comes with its advantages and its disadvantages - which are going to be discussed soon.</p>
           <p>A stack can be visualized like a pile of heavy books. I can add one more book to it, I can take one book from it, but I can't take the books which are lower in the pile until I relieve them of the weight on them. In computer science, this principle is called L.I.F.O. (Last In, First Out).</p>
-          <p></p>
+          <p>Stacks can be implemented using either an array or a linked list and, in general, the best advantage of implementing stacks with the latter data structure is their dynamic size. There's no other big difference between the implementations since the stack only needs to keep a reference of the top element.</p>
+        </div>
+      </div>
+      <div class="text_code">
+        <div>
+          <p>Stacks have many applications in every day programming, some of them are the following:</p>
+          <ul>
+            <li>Reversing a string</li>
+            <li>Undo/redo stack on editors of all sorts</li>
+            <li>Recursive function call stack</li>
+          </ul>
+          <p>In general, stacks are useful when the programmer either doesn't care about the order on which they process the data contained in the stack, or when they care about processing the data in reverse order.</p>
+          <p>The complexity table below takes analyzes a stack implemented with a linked list.</p>
+        </div>
+        <div>
+          <pre data-src="src/code/stack.cpp"></pre>
+          <p class="img_caption">C++ implementation of Stack</p>
         </div>
       </div>
       <table>
@@ -356,25 +373,30 @@
             <td>To push an element on top of the stack, we just have to reference the element two times.</td>
           </tr>
           <tr>
-            <td>Dequeue</td>
+            <td>Pop</td>
             <td>\(O(1)\)</td>
-            <td>Dequeuing an element is just a matter of </td>
+            <td>Removing and returning an element is just a matter of changing the top reference to the next element.</td>
           </tr>
           <tr>
-            <td>Delete</td>
+            <td>Peek</td>
             <td>\(O(1)\)</td>
-            <td>Deletion of an element just requires setting, in the worse case, two pointers. There is no node shifting.</td>
-          </tr>
-          <tr>
-            <td>Update</td>
-            <td>\(O(1)\)</td>
-            <td>Updating an alement requires constant time after accessing the said element.</td>
+            <td>Only involves accessing the top element without changing references.</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div id="queue" class="section">
       <p class="subtitle">3.4. Queue</p>
+      <div class="text_img_aligned">
+        <div>
+          <p>A queue can be visualized like a line of people waiting for their turn at the post office. More people can join the queue by standing at the end of the line, but they'll have to wait for their turn because the post office only serves the person in front of the line, one at a time. In computer science, this principle is called F.I.F.O. (First In, First Out).</p>
+          <p>Queues can be implemented using either an array or a linked list and, in general, the latter implementation's best advantage is its dynamic size. In addition to that, the linked list implementation doesn't run into the problem of running out of space after consecutive successful dequeues - something that gets addressed in array implementations using circular queues.</p>
+        </div>
+        <div>
+          <img src="img/queue.png" alt="Figure depicting a Queue">
+          <p class="img_caption">fig. 12 - Queue</p>
+        </div>
+      </div>
       <table>
         <thead>
           <tr>
