@@ -79,7 +79,8 @@
             </li>
             <li><a href="#">Complex Algorithms</a>
               <ol>
-                <li><a href="#">Djikstra's Algorithm</a></li>
+                <li><a href="#">Rat in a maze Algorithm</a></li>
+                <li><a href="#">Dijkstra's Algorithm</a></li>
                 <li><a href="#">A* Algorithm</a></li>
                 <li><a href="#">Fast Fourier Transform</a></li>
               </ol>
@@ -439,7 +440,7 @@
       <p class="subtitle">3.5. Graph</p>
       <div class="text_four_images_below">
         <div>
-          <p>Graphs are a non-linear data structure which consists of vertices and edges connecting them. They're the base of other data structures like <a href="#tree" style="text-decoration: underline;">trees</a> and <a href="#heap" style="text-decoration: underline;">heaps</a>. Graphs can be used to model real life relationships between entities of any type. For example, an undirected graph can be used to represent friendships in a social network, or a weighted directed graph could represent a road network. They're generally not space efficient and time complexity of operations depends on the way they're implemented. Mathematically, a graph is represented with the notation:</p>
+          <p>Graphs are a non-linear data structure which consists of vertices and edges connecting them. They're the base of other data structures like <a href="#tree">trees</a> and <a href="#heap">heaps</a>. Graphs can be used to model real life relationships between entities of any type. For example, an undirected graph can be used to represent friendships in a social network, or a weighted directed graph could represent a road network. They're generally not space efficient and time complexity of operations depends on the way they're implemented. Mathematically, a graph is represented with the notation:</p>
           <div>
             $$
             G = (V, E)
@@ -776,7 +777,92 @@
     </div>
     <hr>
     <div id="aa" class="section">
-      <p class="subtitle">4. Analysis of Algorithms</p>
+      <div>
+        <p class="subtitle">4. Analysis of Algorithms</p>
+        <p>Many aspects of our digital lives are controlled by algorithms – from the search function of a music streaming service to a navigation app that guides us to our destination.</p>
+        <p>Because there's so many possible applications for algorithms in everyday life, various design techniques distinguish the multitude of algorithms ever created: </p>
+        <ul>
+          <li><i><b>Brute force algorithms:</b></i> There's no real technique involved here – these algorithms just try every possible combination and stop executing when they find a solution. <a href="#linsearch">Linear search</a> is a good example.</li>
+          <li><i><b>Greedy algorithms:</b></i> They're algorithms that always follow the optimal path, without regards of the efficiency of the final solution. <a href="#dijkstra"> Dijkstra's algorithm</a> is an example of greedy algorithm.</li>
+          <li><i><b>Backtracking algorithms:</b></i> Backtracking algorithms are usually recursive algorithms that try to work towards a solution by combining multiple steps. If a part of the solution doesn't lead to a final solution, it is removed and another solution is looked for. They're usually implemented in combination of <i>dynamic programming</i>, which is a technique that stores the results of a function with various inputs, so that, if the function is called with the same inputs again, the result is already stored and there is no need to run the function again. <a href="#rat">Rat in a Maze Algorithm</a> is a good example.</li>
+          <li><i><b>Divide and conquer algorithms:</b></i> These algorithms try to divide the problem in smaller sub-problems to solve those instead. In some algorithms, the sub-problems solutions are sometimes recombined in the final solution. <a href="#mergesort">Merge sort</a> is a classic divide and conquer algorithm.</li>
+        </ul>
+      </div>
+      <div class="text_img_aligned">
+        <div>
+          <p>Lastly, before diving into Algorithm Analysis, it is worth mentioning that many divide and conquer algorithm's time complexity can be calculated using the Master Theorem. It is a formula that helps solving recurrence relations of the form:</p>
+          <div>
+            $$
+            \begin{aligned}
+            T(n) &= aT(\frac{n}{b}) + f(n) \;\; \forall \;\; a \geq 1,\; b > 1,\; f(n) \geq 0
+            \end{aligned}
+            $$
+          </div>
+          <p>Where \(T(n)\) is the time complexity of the algorithm, \(a\) is the number of sub-problems, \(T(\frac{n}{b})\) is the runtime of each initial subproblem and \(f(n)\) is the time complexity of the algorithm's work done outside of the recursive calls.</p>
+        </div>
+        <div>
+          <img src="img/master.png" alt="Figure depicting a recursive call tree">
+          <p class="img_caption">fig. 25 - Master theorem tree</p>
+        </div>
+      </div>  
+      <div>
+        <p>At depth \(d\), a complete tree has \(a^d\) nodes and the maximum depth of a recursion tree is \(log_b(n)\).<br>That means that to find out how many leaves the tree has we can calculate \(a^{log_b(n)}\) which, for logarithms properties equals to \(n^{log_b(a)}\).</p>
+        <p>A running time of \(\Theta(n^{log_b a})\) follows.</p>
+        <p>Since in the master theorem – \(T(n) = aT(\frac{n}{b}) + f(n)\) – we're adding \(f(n)\) to the recursive calls complexity, the next step is comparing the two values and finding out which one dominates. There is three cases:</p>
+        <div>
+          $$
+          \begin{aligned}
+          &\text{Case 1: if} \; f(n) = O(n^{log_b a - \epsilon}) \;\; \forall \;\; \epsilon > 0 \text{, then} \; T(n) = \Theta(n^{log_b a})\\
+          &\text{Case 2: if} \; f(n) = \Theta(n^{log_b a}) \text{, then} \; T(n) = \Theta(n^{log_b a}log(n))\\
+          &\text{Case 3: if} \; f(n) = \Omega(n^{log_b a + \epsilon}) \;\; \forall \;\; \epsilon > 0 \text{, then} \; T(n) = \Theta(f(n))
+          \end{aligned}
+          $$     
+        </div>
+      </div>
+    </div>
+    <div id="search" class="section">
+      <p class="subtitle">4.1. Search Algorithms</p>
+      <p>Search algorithms are algorithms that try to find a specific element in a data structure. There are many different types of search algorithms, each with their own advantages and disadvantages.</p>
+    </div>
+    <div id="linsearch" class="section">
+      <p class="subtitle">4.1.1. Linear Search</p>
+      <p>Linear search is a very simple search algorithm that works by iterating through the data structure and comparing each element with the element we're looking for. If the element is found, the algorithm returns the index of the element. If the element is not found, the algorithm returns -1.</p>
+      <p>Linear search is a brute force algorithm, which means that it tries every possible combination and stops executing when it finds a solution.</p>
+      <div class="algo_analysis">
+        <div>
+          <pre data-src="src/code/linsearch.cpp"></pre>
+        </div>
+        <div>
+          <pre data-src="src/analysis/linsearch.txt" class="no-line-numbers"></pre>
+        </div>
+        <p class="img_caption">Analysis of Linear Search</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Input size = \(n\)</th>
+            <th>Time complexity</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Worst case</td>
+            <td>\(O(n)\)</td>
+            <td>The worst case in linear search happens when the element is either at the last index or not present in the array.</td>
+          </tr>
+          <tr>
+            <td>Average case</td>
+            <td>\(\Theta(n)\)</td>
+            <td>The average case would be finding the element at index \(\frac{n}{2}\), so the average case still depends on the input size.</td>
+          </tr>
+          <tr>
+            <td>Best case</td>
+            <td>\(\Omega(1)\)</td>
+            <td>Deleting works by first finding the index of the pair by hashing the key and then setting the array location to null.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </body>

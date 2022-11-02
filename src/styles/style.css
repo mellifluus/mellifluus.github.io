@@ -32,6 +32,11 @@ a:visited,
 a:hover, 
 a:active {
   color:blue;
+}
+
+.toc > ol > li > a,
+.toc > ol > li > ol > li > a,
+.toc > ol > li > ol > li > ol > li > a {
   text-decoration: none;
 }
 
@@ -73,7 +78,7 @@ table tbody tr:nth-of-type(even) {
 }
 
 .toc ol li {
-  display: block
+  display: block;
 }
 
 .toc ol li:before {
@@ -166,6 +171,10 @@ table tbody tr:nth-of-type(even) {
 
 .algo_analysis div:nth-of-type(2) pre {
   border-radius: 0px 5px 5px 0px;
+}
+
+.algo_analysis .img_caption {
+  grid-column: 1/3;
 }
 
 .info {
