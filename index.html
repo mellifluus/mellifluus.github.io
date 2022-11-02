@@ -16,7 +16,7 @@
   <a href="#top"><div class="top"></div></a>
   <div class="container line-numbers" data-prismjs-copy="Copy to clipboard" data-prismjs-copy-success="✅" data-prismjs-copy-timeout="1000">
     <div class="info">
-      Massimiliano Ricci<br>
+      Massimiliano Ricc<a style="color: inherit;" href="/notes.html">i</a><br>
       SE_02 Algorithms and Data Structures<br>
       CODE University of Applied Sciences<br>
       Fall Semester 2022
@@ -240,7 +240,7 @@
           <tr>
             <td>Update</td>
             <td>\(O(1)\)</td>
-            <td>Updating an alement requires access - \(O(1)\) - and then updating the accessed value.</td>
+            <td>Updating an element requires access - \(O(1)\) - and then updating the accessed value.</td>
           </tr>
         </tbody>
       </table>
@@ -320,7 +320,7 @@
           <tr>
             <td>Update</td>
             <td>\(O(1)\)</td>
-            <td>Updating an alement requires constant time after accessing the said element.</td>
+            <td>Updating an element requires constant time after accessing the said element.</td>
           </tr>
         </tbody>
       </table>
@@ -346,7 +346,7 @@
             <li>Recursive function call stack</li>
           </ul>
           <p>In general, stacks are useful when the programmer either doesn't care about the order on which they process the data contained in the stack, or when they care about processing the data in reverse order.</p>
-          <p>The complexity table below takes analyzes a stack implemented with a linked list.</p>
+          <p>The complexity table below analyzes a stack implemented with a linked list.</p>
         </div>
         <div>
           <pre data-src="src/code/stack.cpp"></pre>
@@ -362,11 +362,6 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Traverse</td>
-            <td>\(O(n)\)</td>
-            <td>Stacks, like linked lists, have to be traversed node by node.</td>
-          </tr>
           <tr>
             <td>Push</td>
             <td>\(O(1)\)</td>
@@ -397,6 +392,16 @@
           <p class="img_caption">fig. 12 - Queue</p>
         </div>
       </div>
+      <div class="text_code">
+        <div>
+          <p>Queues can also be implemented to dequeue elements based on priority instead of the F.I.F.O. principle. These are usually implemented with heaps for their efficiency and elements can be associated with a priority while being pushed in the queue. The priority queue will then dequeue elements based on highest priority first. </p>
+          <p></p>
+        </div>
+        <div>
+          <pre data-src="src/code/queue.cpp"></pre>
+          <p class="img_caption">C++ implementation of Queue</p>
+        </div>
+      </div>
       <table>
         <thead>
           <tr>
@@ -407,33 +412,56 @@
         </thead>
         <tbody>
           <tr>
-            <td>Traverse</td>
-            <td>\(O(n)\)</td>
-            <td>Queues, like linked lists, have to be traversed node by node.</td>
-          </tr>
-          <tr>
             <td>Enqueue</td>
             <td>\(O(1)\)</td>
-            <td>To enqueue an element, we just have to reference the element two times.</td>
+            <td>To enqueue an element at the end of the queue, we just have to reference the element as rear.</td>
           </tr>
           <tr>
             <td>Dequeue</td>
             <td>\(O(1)\)</td>
-            <td>Dequeuing an element is just a matter of </td>
+            <td>Removing and returning an element is done by setting the front of the queue to the next element and returning the element.</td>
           </tr>
           <tr>
-            <td>Delete</td>
+            <td>Peek</td>
             <td>\(O(1)\)</td>
-            <td>Deletion of an element just requires setting, in the worse case, two pointers. There is no node shifting.</td>
-          </tr>
-          <tr>
-            <td>Update</td>
-            <td>\(O(1)\)</td>
-            <td>Updating an alement requires constant time after accessing the said element.</td>
+            <td>Only involves accessing the front element without changing references.</td>
           </tr>
         </tbody>
       </table>
     </div>
+    <div id="tree" class="section">
+      <p class="subtitle">3.5. Tree</p>
+      <div class="text_twoimg_aligned">
+        <div>
+          <p>Trees are non-linear data structures that consist of nodes and edges. Every node consists of data and pointers to other nodes. The top node is also called root node and has no parent node. A node is a leaf or external node when it doesn't point to any other node - they're usually located towards the bottom of the tree if the tree is balanced. Edges are basically the connections between nodes, and there is a maximum of \(n - 1\) edges in a tree that has \(n\) nodes.</p>
+          <p>Since trees can be implemented in many different ways, there are some properties that describe them. I'll take into consideration <i>fig. 13</i> while defining them: </p>
+          <ul>
+            <li><i><b>Degree: </b></i>The maximum number of children nodes allowed for every node. In this case, \(3\).</li>
+            <li><i><b>Depth: </b></i>The number of edges between a node and the root node. In this case, depth is \(0\) for the root node, \(2\) for the rightmost node and \(3\) for the leftmost one.</li>
+            <li><i><b>Height: </b></i>Starting from \(0\) for the leaf nodes, it defines the distance between external nodes and the root node. The root node, in this case, has a height of \(3\) so the whole tree also has a height of \(3\).</li>
+            <li><i><b>Level: </b></i>Starting from \(1\) for the root node, it defines the distance between a node and the root node. In this case, level is \(1\) for the root node, \(3\) for the rightmost node and \(4\) for the leftmost one.</li>
+          </ul>
+          <p>As stated before, there are many ways of implementing a tree. In a <i>Skewed binary tree</i> for example, every node has only either a left or right child node, which leads to a structure that is more similar to a linked list.<br>This document is going to cover only trees of degree \(2\).</p>
+          <p></p>
+        </div>
+        <div>
+          <img src="img/nonbinarytree.png" alt="Figure depicting an unbalanced tree">
+          <p class="img_caption">fig. 13 - Unbalanced tree</p>
+        </div>
+        <div>
+          <img src="img/unbalancedtree.png" alt="Figure depicting an unbalanced binary tree">
+          <p class="img_caption">fig. 14 - Unbalanced binary tree</p>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
+<!-- <div class="algo_analysis">
+        <div>
+          <pre data-src="src/code/linsearch.cpp"></pre>
+        </div>
+        <div>
+          <pre data-src="src/analysis/linsearch.txt" class="no-line-numbers"></pre>
+        </div>
+      </div> -->
 </html>
