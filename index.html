@@ -22,7 +22,7 @@
       Fall Semester 2022
     </div>
     <p class="title">
-      SE_02 - Algorithms and Data Structures
+      SE_02 – Algorithms and Data Structures
     </p>
     <hr id="top">
     <div class="toc">
@@ -34,9 +34,9 @@
             <li><a href="#complexities">Complexities</a></li>
             <li><a href="#ab">Asymptotic Bounds</a>
               <ol>
-                <li><a href="#aub">Asymptotic Upper Bound - Big-O</a></li>
-                <li><a href="#alb">Asymptotic Lower Bound - Big-Ω</a></li>
-                <li><a href="#atb">Asymptotic Tight Bound - Big-Θ</a></li>
+                <li><a href="#aub">Asymptotic Upper Bound – Big-O</a></li>
+                <li><a href="#alb">Asymptotic Lower Bound – Big-Ω</a></li>
+                <li><a href="#atb">Asymptotic Tight Bound – Big-Θ</a></li>
                 <li><a href="#considerations">Considerations about Bounds</a></li>
               </ol>
             </li>
@@ -48,7 +48,13 @@
             <li><a href="#linked">Linked List</a></li>
             <li><a href="#stack">Stack</a></li>
             <li><a href="#queue">Queue</a></li>
-            <li><a href="#tree">Tree</a></li>
+            <li><a href="#tree">Tree</a>
+              <ol>
+                <li><a href="#bst">Binary Search Tree</a></li>
+                <li><a href="#rbt">Red-Black Binary Tree</a></li>
+                <li><a href="#avl">AVL Binary Tree</a></li>
+              </ol>
+            </li>
             <li><a href="#heap">Heap</a></li>
             <li><a href="#graph">Graph</a></li>
             <li><a href="#hash">Hash table</a></li>
@@ -98,16 +104,16 @@
         There are two types of complexities to take into consideration when designing an algorithm:
       </p>
       <ul>
-        <li><b><i>Time complexity</i></b> - Attempts to give a broad idea of how complex a given algorithm is in correlation with its execution time.</li>
-        <li><b><i>Space complexity</i></b> - Attempts to give a broad idea of how complex a given algorithm is in correlation with the space required for its execution. It consists of two parts, which are summed together:
+        <li><b><i>Time complexity</i></b> – Attempts to give a broad idea of how complex a given algorithm is in correlation with its execution time.</li>
+        <li><b><i>Space complexity</i></b> – Attempts to give a broad idea of how complex a given algorithm is in correlation with the space required for its execution. It consists of two parts, which are summed together:
           <ul>
-            <li><b><i>Auxiliary space</i></b> - Represents the amount of space used by variables and constants that are not dependent by the size of the input of the algorithm. In other words, the temporary space required.</li>
-            <li><b><i>Variable space</i></b> - Represents the amount of space used by the input size of the algorithm.</li>
+            <li><b><i>Auxiliary space</i></b> – Represents the amount of space used by variables and constants that are not dependent by the size of the input of the algorithm. In other words, the temporary space required.</li>
+            <li><b><i>Variable space</i></b> – Represents the amount of space used by the input size of the algorithm.</li>
           </ul>
         </li>
       </ul>
       <p>
-        Both complexities can be expressed using Asymptotic Notation, which is going to be covered in depth in the next chapter. In this document, I’m going to be - almost - solely focus on the concept of time complexity.
+        Both complexities can be expressed using Asymptotic Notation, which is going to be covered in depth in the next chapter. In this document, I’m going to be – almost – solely focus on the concept of time complexity.
       </p>
     </div>
     <div id="ab" class="section">
@@ -117,7 +123,7 @@
       <p>When analyzing an algorithms, we’re interested in three types of bounds (each with its own notation).</p>
     </div>
     <div id="aub" class="section">
-      <p class="subtitle">2.2.1. Asymptotic Upper Bound - \(Big\mbox{-}O\)</p>
+      <p class="subtitle">2.2.1. Asymptotic Upper Bound – \(Big\mbox{-}O\)</p>
       <div class="text_img_aligned">
         <div>
           <p>The upper bound, which can also be referred to as \(Big\mbox{-}O\) or just \(O\) represents the worst-case scenario in the running time of an algorithm. Let’s say \(f(n)\) describes the running time of an algorithm; we can then say that \(f(n)\) is \(O(g(n))\) if and only if a constant \(c\) exists such that \(c \cdot g(n) \geq f(n)\) for all \(n \geq n_0\).</p>
@@ -132,7 +138,7 @@
       </div>
     </div>
     <div id="alb" class="section">
-      <p class="subtitle">2.2.2. Asymptotic Lower Bound - \(Big\mbox{-}\Omega\)</p>
+      <p class="subtitle">2.2.2. Asymptotic Lower Bound – \(Big\mbox{-}\Omega\)</p>
       <div class="text_img_aligned">
         <div>
           <p>The lower bound, which can also be referred to as \(Big\mbox{-}\Omega\) or just \(\Omega\) represents the best-case scenario in the running time of an algorithm. Let’s say \(f(n)\) describes the running time of an algorithm; we can then say that \(f(n)\) is \(\Omega(g(n))\) if and only if a constant \(c\) exists such that \(c \cdot g(n) \leq f(n)\) for all \(n \geq n_0\).</p>
@@ -147,7 +153,7 @@
       </div>
     </div>
     <div id="atb" class="section">
-      <p class="subtitle">2.2.3. Asymptotic Tight Bound - \(Big\mbox{-}\Theta\)</p>
+      <p class="subtitle">2.2.3. Asymptotic Tight Bound – \(Big\mbox{-}\Theta\)</p>
       <div class="text_img_aligned">
         <div>
           <p>The tight bound, which can also be referred to as \(Big\mbox{-}\Theta\) or just \(\Theta\) represents the average-case scenario in the running time of an algorithm. Let’s say \(f(n)\) describes the running time of an algorithm; we can then say that \(f(n)\) is \(\Theta(g(n))\) if and only if two constants \(c_1, c_2\) exist such that \(c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n)\) for all \(n \geq n_0\).</p>
@@ -179,14 +185,14 @@
     <hr>
     <div id="ads" class="section">
       <p class="subtitle">3. Analysis of Data Structures</p>
-      <p>Data structures are the foundation of most algorithms. They provide a way to store, organize and retrieve data, and each of them has different functionalities, advantages and disadvantages. Knowing how common data structures work and how complex it is to do various operations on them is extremely important for algorithm design - thus I'm going to cover them before the Algorithm Analysis section.</p>
+      <p>Data structures are the foundation of most algorithms. They provide a way to store, organize and retrieve data, and each of them has different functionalities, advantages and disadvantages. Knowing how common data structures work and how complex it is to do various operations on them is extremely important for algorithm design – thus I'm going to cover them before the Algorithm Analysis section.</p>
       <p>Data structures can be classified in primitive and non-primitive structures:</p>
       <ul>
-        <li><b><i>Primitive Data Structures</i></b> - They're the building block on which non-primitive data structures a built on. They hold one value (i.e. Integer, Float, Boolean...) in a specific location in memory.</li>
-        <li><b><i>Non-primitive Data Structures</i></b> - They're based on primitive data structures, and can be seen as collections of them. They classify in contiguous and linked structures:
+        <li><b><i>Primitive Data Structures</i></b> – They're the building block on which non-primitive data structures a built on. They hold one value (i.e. Integer, Float, Boolean...) in a specific location in memory.</li>
+        <li><b><i>Non-primitive Data Structures</i></b> – They're based on primitive data structures, and can be seen as collections of them. They classify in contiguous and linked structures:
           <ul>
-            <li><b><i>Contiguous Data Structures</i></b> - They store data in contiguous (adjacent) locations in memory. The most known example is the <i>Array</i> data structure.</li>
-            <li><b><i>Linked Data Structures</i></b> - They store data in random locations in memory. Each memory cell stores a value and one or more memory pointers to other elements. The most known example is the <i>Linked List</i> data structure.</li>
+            <li><b><i>Contiguous Data Structures</i></b> – They store data in contiguous (adjacent) locations in memory. The most known example is the <i>Array</i> data structure.</li>
+            <li><b><i>Linked Data Structures</i></b> – They store data in random locations in memory. Each memory cell stores a value and one or more memory pointers to other elements. The most known example is the <i>Linked List</i> data structure.</li>
           </ul>
         </li>
       </ul>
@@ -200,11 +206,11 @@
         </div>
         <div>
           <img src="img/array.png" alt="Figure depicting an array with five elements, with indexes from 0 to 4 on top of each cell.">
-          <p class="img_caption">fig. 5 - Array</p>
+          <p class="img_caption">fig. 5 – Array</p>
         </div>
         <div>
           <img src="img/matrix.png" alt="Figure depicting a matrix with 3 rows and 5 columns, with coordinates inside of each cell.">
-          <p class="img_caption">fig. 6 - 2D Array</p>
+          <p class="img_caption">fig. 6 – 2D Array</p>
         </div>
       </div>
       <p>Arrays are an extremely common data structure, and other structures, that we're going to look into later are based on them. <br> Space complexity-wise, they're extremely efficient since they contain only data at every index.</p>
@@ -240,7 +246,7 @@
           <tr>
             <td>Update</td>
             <td>\(O(1)\)</td>
-            <td>Updating an element requires access - \(O(1)\) - and then updating the accessed value.</td>
+            <td>Updating an element requires access – \(O(1)\) – and then updating the accessed value.</td>
           </tr>
         </tbody>
       </table>
@@ -253,31 +259,31 @@
         </div>
         <div>
           <img src="img/slinked.png" alt="Figure depicting a singly Linked List">
-          <p class="img_caption">fig. 7 - Singly linked list</p>
+          <p class="img_caption">fig. 7 – Singly linked list</p>
         </div>
         <div>
           <img src="img/dlinked.png" alt="Figure depicting a doubly Linked List">
-          <p class="img_caption">fig. 8 - Doubly linked list</p>
+          <p class="img_caption">fig. 8 – Doubly linked list</p>
         </div>
         <div>
           <img src="img/sclinked.png" alt="Figure depicting a singly circular Linked List">
-          <p class="img_caption">fig. 9 - Circular singly linked list</p>
+          <p class="img_caption">fig. 9 – Circular singly linked list</p>
         </div>
         <div>
           <img src="img/dclinked.png" alt="Figure depicting a doubly circular Linked List">
-          <p class="img_caption">fig. 10 - Circular doubly linked list</p>
+          <p class="img_caption">fig. 10 – Circular doubly linked list</p>
         </div>
       </div>
       <div class="text_code">
         <div>
           <p>Depending on the use case, there is a couple ways to structure a linked list to best suit the needs of the developer:</p>
           <ul>
-            <li><b><i>Singly linked list (fig. 7)</i></b> - It's a linked list where every node points at the next one, creating a unidirectional chain.</li>
-            <li><b><i>Doubly linked list (fig. 8)</i></b> - It's a linked list where every node points at the previous and at the next one, creating a bidirectional chain.</li>
-            <li><b><i>Circular linked list</i></b> - It's a linked list where its nodes create a closed loop, it can be singly or doubly linked:
+            <li><b><i>Singly linked list (fig. 7)</i></b> – It's a linked list where every node points at the next one, creating a unidirectional chain.</li>
+            <li><b><i>Doubly linked list (fig. 8)</i></b> – It's a linked list where every node points at the previous and at the next one, creating a bidirectional chain.</li>
+            <li><b><i>Circular linked list</i></b> – It's a linked list where its nodes create a closed loop, it can be singly or doubly linked:
               <ul>
-                <li><b><i>Circular singly linked list (fig. 9)</i></b> - It's a singly linked list where the last node points back at the first node (HEAD node)</li>
-                <li><b><i>Circular doubly linked list (fig. 10)</i></b> - It's a doubly linked list where the last node points back at the first node (HEAD node), and the first node points to the last node in the chain.</li>
+                <li><b><i>Circular singly linked list (fig. 9)</i></b> – It's a singly linked list where the last node points back at the first node (HEAD node)</li>
+                <li><b><i>Circular doubly linked list (fig. 10)</i></b> – It's a doubly linked list where the last node points back at the first node (HEAD node), and the first node points to the last node in the chain.</li>
               </ul>
             </li>
           </ul>
@@ -287,7 +293,7 @@
           <p class="img_caption">C++ implementation of singly Linked List</p>
         </div>
       </div>
-      <p>Space complexity wise linked lists are obviously not better than arrays - since every node stores one or two pointers other than the actual data. Often however, the advantage of having a dinamically sized collection of elements outweighs the space disadvantages. <br> In the table below, for the Insert, Delete, and Update operation complexities, I'm taking into consideration the sole operation, without taking into account that each one of them requires first of all accessing the node, with a complexity of \(O(n)\).</p>
+      <p>Space complexity wise linked lists are obviously not better than arrays – since every node stores one or two pointers other than the actual data. Often however, the advantage of having a dinamically sized collection of elements outweighs the space disadvantages. <br> In the table below, for the Insert, Delete, and Update operation complexities, I'm taking into consideration the sole operation, without taking into account that each one of them requires first of all accessing the node, with a complexity of \(O(n)\).</p>
       <table>
         <thead>
           <tr>
@@ -330,7 +336,7 @@
       <div class="text_img_aligned" style="grid-template-columns: 1fr 2fr;">
         <div>
           <img src="img/stack.png" alt="Figure depicting a Stack">
-          <p class="img_caption">fig. 11 - Stack</p>
+          <p class="img_caption">fig. 11 – Stack</p>
         </div>
         <div>
           <p>A stack can be visualized like a pile of heavy books. I can add one more book to it, I can take one book from it, but I can't take the books which are lower in the pile until I relieve them of the weight on them. In computer science, this principle is called L.I.F.O. (Last In, First Out).</p>
@@ -385,11 +391,11 @@
       <div class="text_img_aligned">
         <div>
           <p>A queue can be visualized like a line of people waiting for their turn at the post office. More people can join the queue by standing at the end of the line, but they'll have to wait for their turn because the post office only serves the person in front of the line, one at a time. In computer science, this principle is called F.I.F.O. (First In, First Out).</p>
-          <p>Queues can be implemented using either an array or a linked list and, in general, the latter implementation's best advantage is its dynamic size. In addition to that, the linked list implementation doesn't run into the problem of running out of space after consecutive successful dequeues - something that gets addressed in array implementations using circular queues.</p>
+          <p>Queues can be implemented using either an array or a linked list and, in general, the latter implementation's best advantage is its dynamic size. In addition to that, the linked list implementation doesn't run into the problem of running out of space after consecutive successful dequeues – something that gets addressed in array implementations using circular queues.</p>
         </div>
         <div>
           <img src="img/queue.png" alt="Figure depicting a Queue">
-          <p class="img_caption">fig. 12 - Queue</p>
+          <p class="img_caption">fig. 12 – Queue</p>
         </div>
       </div>
       <div class="text_code">
@@ -433,7 +439,7 @@
       <p class="subtitle">3.5. Tree</p>
       <div class="text_twoimg_aligned">
         <div>
-          <p>Trees are non-linear data structures that consist of nodes and edges. Every node consists of data and pointers to other nodes. The top node is also called root node and has no parent node. A node is a leaf or external node when it doesn't point to any other node - they're usually located towards the bottom of the tree if the tree is balanced. Edges are basically the connections between nodes, and there is a maximum of \(n - 1\) edges in a tree that has \(n\) nodes.</p>
+          <p>Trees are non-linear data structures that consist of nodes and edges. Every node consists of data and pointers to other nodes. The top node is also called root node and has no parent node. A node is a leaf or external node when it doesn't point to any other node – they're usually located towards the bottom of the tree if the tree is balanced. Edges are basically the connections between nodes, and there is a maximum of \(n - 1\) edges in a tree that has \(n\) nodes.</p>
           <p>Since trees can be implemented in many different ways, there are some properties that describe them. I'll take into consideration <i>fig. 13</i> while defining them: </p>
           <ul>
             <li><i><b>Degree: </b></i>The maximum number of children nodes allowed for every node. In this case, \(3\).</li>
@@ -445,12 +451,121 @@
           <p></p>
         </div>
         <div>
-          <img src="img/nonbinarytree.png" alt="Figure depicting an unbalanced tree">
-          <p class="img_caption">fig. 13 - Unbalanced tree</p>
+          <img src="img/nonbinarytree.png" alt="Figure depicting a degree three tree">
+          <p class="img_caption">fig. 13 – Degree 3 tree</p>
         </div>
         <div>
-          <img src="img/unbalancedtree.png" alt="Figure depicting an unbalanced binary tree">
-          <p class="img_caption">fig. 14 - Unbalanced binary tree</p>
+          <img src="img/unbalancedtree.png" alt="Figure depicting an degree two tree">
+          <p class="img_caption">fig. 14 – Binary tree</p>
+        </div>
+      </div>
+    </div>
+    <div id="bst" class="section">
+      <p class="subtitle">3.5.1. Binary Search Tree</p>
+      <div class="text_img_aligned">
+        <div>
+          <p>A binary search tree is a particular type of binary tree where:</p>
+          <ul>
+            <li>The left child of a node and all of its children hold a value lesser than that of the parent.</li>
+            <li>The right child of a node and all of its children hold a value greater than that of the parent.</li>
+          </ul>
+          <p>Binary search trees search complexity is dependant on how balanced the tree is. In the case of a perfect binary tree (<i>fig.15</i>), \(h = log(n)\), where \(h\) is the height of the tree and \(n\) is the total number of nodes in the tree.</p>
+        </div>
+        <div>
+          <img src="img/binsearchtree.png" alt="Figure depicting a Perfect Binary search tree">
+          <p class="img_caption">fig. 15 – Perfect Binary Search Tree</p>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>N. of nodes = \(n\) <br> Height = \(h\)</th>
+            <th>Time complexity</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Search</td>
+            <td>\(O(h) \approx O(log(n))\)</td>
+            <td>In a perfect binary tree, every time a child node is accessed the search space is halved.</td>
+          </tr>
+          <tr>
+            <td>Insert (Leaf Node)</td>
+            <td>\(O(1)\)</td>
+            <td>It only involves setting a pointer on the parent node.</td>
+          </tr>
+          <tr>
+            <td>Delete (Leaf Node)</td>
+            <td>\(O(1)\)</td>
+            <td>Only involves removing a pointer from the parent node.</td>
+          </tr>
+          <tr>
+            <td>Insert (Internal Node)</td>
+            <td>\(O(n)\)</td>
+            <td>In the worst case, the operation can affect every node in the tree.</td>
+          </tr>
+          <tr>
+            <td>Delete (Internal Node)</td>
+            <td>\(O(n)\)</td>
+            <td>In the worst case, the operation can affect every node in the tree.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Reality is trees can become unbalanced extremely quick while inserting and deleting nodes, leading to a search complexity of \(O(n)\). That is why computer scientists came up with the concept of self-balancing trees.</p>
+    </div>
+    <div id="rbt" class="section">
+      <p class="subtitle">3.5.2. Red-Black Binary Tree</p>
+      <div class="text_img_aligned">
+        <div>
+          <p>Red-black binary trees add a new "color" property to their nodes, which can be either <span style="color: red;">red</span> or black. They implement some more rules on the nodes behaviour based on their color:</p>
+          <ul>
+            <li>The root of the tree is a black node.</li>
+            <li>A node cannot have a parent or children node of its same color, except when its child is a leaf node.</li>
+            <li>Leaf nodes are considered black nodes and have a value of null.</li>
+            <li>The path from any node in the tree to any of its leaf descendants contains the same number of black nodes.</li>
+          </ul>
+          <p>By implementing these rules, the tree balances itself when inserting or removing nodes.</p>
+        </div>
+        <div>
+          <img src="img/rbtree.png" alt="Figure depicting a red-black binary tree">
+          <p class="img_caption">fig. 16 - Red-Black Binary Tree</p>
+        </div>
+      </div>
+    </div>
+    <div id="avl" class="section">
+      <p class="subtitle">3.5.3. AVL Binary Tree</p>
+      <div class="text_img_below">
+        <div>
+          <p>An AVL tree (named after its inventors – Adelson-Velsky,Landis) is a self-balancing tree that restores balance if needed after every insertion or deletion. It does that by checking that the height of every node's subtrees does not exceed a threshold, which is usually \(1\). In mathematical terms, an AVL tree has to satisfy \(|B(N)| \leq 1\) for every given node \(N\), where \(B(N) = h_l - h_r\) with \(h_l, h_r\) being the height of the left and right child subtrees respectively. </p>
+          <p>When \(B(N) > 1\), the tree is left-heavy, and requires either a right rotation or a left-right rotation.</p>
+          <p>When \(B(N) < -1\), the tree is right-heavy, and requires either a left rotation or a right-left rotation.</p>
+          <p>More on rotations in <i>fig. 17</i>.</p>
+        </div>
+        <div>
+          <img src="img/avlrotations.png" alt="Figure depicting AVL tree rotations">
+          <p class="img_caption">fig. 17 - AVL tree rotations</p>
+        </div>
+      </div>
+    </div>
+    <div id="heap" class="section">
+      <p class="subtitle">3.6. Heap</p>
+      <div class="text_twoimg_aligned">
+        <div>
+          <p>Heaps are complete trees. That means that a heap with \(n\) nodes always has a \(O(log(n))\) height. </p>
+          <ul>
+            <li><i><b>Min Heap:</b></i> It's a tree where every node holds a value that is less or equal than its children's held values. The smallest value in the min heap is located at the root of the tree.</li>
+            <li><i><b>Max Heap:</b></i> It's a tree where every node holds a value that is greater or equal than its children's held values. The largest value in the max heap is located at the root of the tree.</li>
+          </ul>
+          
+        </div>
+        <div>
+          <img src="img/minheap.png" alt="Figure depicting a min heap">
+          <p class="img_caption">fig. 18 - Min Heap</p>
+        </div>
+        <div>
+          <img src="img/maxheap.png" alt="Figure depicting a max heap">
+          <p class="img_caption">fig. 19 - Max Heap</p>
         </div>
       </div>
     </div>
