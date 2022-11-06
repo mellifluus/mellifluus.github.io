@@ -158,7 +158,7 @@
         <div>
           <p>The tight bound, which can also be referred to as \(Big\mbox{-}\Theta\) or just \(\Theta\) represents the average-case scenario in the running time of an algorithm. Let’s say \(f(n)\) describes the running time of an algorithm; we can then say that \(f(n)\) is \(\Theta(g(n))\) if and only if two constants \(c_1, c_2\) exist such that \(c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n)\) for all \(n \geq n_0\).</p>
           <p>In mathematical terms, we can then define \(Big\mbox{-}\Theta\) as follows:</p>
-          <p>\(f(n) = \Theta(g(n)) \iff c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n) \;\; \forall \;\; n \geq n_0\)</p>
+          <p>\(f(n) = \Theta(g(n)) \iff c_1 \cdot g(n) \leq f(n) \) \(  \leq c_2 \cdot g(n) \;\; \forall \;\; n \geq n_0\)</p>
           <p>Naively, the asymptotic tight bound is a function which, when multiplied by two different constants, manages to “sandwich” \(f(n)\).</p>
         </div>
         <div>
@@ -333,14 +333,14 @@
     </div>
     <div id="stack" class="section">
       <p class="subtitle">3.3. Stack</p>
-      <div class="text_img_aligned" style="grid-template-columns: 1fr 2fr;">
-        <div>
-          <img src="img/stack.png" alt="Figure depicting a Stack">
-          <p class="img_caption">fig. 11 – Stack</p>
-        </div>
+      <div class="text_img_aligned">
         <div>
           <p>A stack can be visualized like a pile of heavy books. I can add one more book to it, I can take one book from it, but I can't take the books which are lower in the pile until I relieve them of the weight on them. In computer science, this principle is called L.I.F.O. (Last In, First Out).</p>
           <p>Stacks can be implemented using either an array or a linked list and, in general, the best advantage of implementing stacks with the latter data structure is their dynamic size. There's no other big difference between the implementations since the stack only needs to keep a reference of the top element.</p>
+        </div>
+        <div>
+          <img src="img/stack.png" alt="Figure depicting a Stack">
+          <p class="img_caption">fig. 11 – Stack</p>
         </div>
       </div>
       <div class="text_code">
@@ -552,12 +552,23 @@
       <p class="subtitle">3.6. Heap</p>
       <div class="text_twoimg_aligned">
         <div>
-          <p>Heaps are complete trees. That means that a heap with \(n\) nodes always has a \(O(log(n))\) height. </p>
+          <p>Heaps are data structures that are commonly used in Heap Sort and to implement Priority queues. They can be implemented in two different ways:</p>
           <ul>
             <li><i><b>Min Heap:</b></i> It's a tree where every node holds a value that is less or equal than its children's held values. The smallest value in the min heap is located at the root of the tree.</li>
             <li><i><b>Max Heap:</b></i> It's a tree where every node holds a value that is greater or equal than its children's held values. The largest value in the max heap is located at the root of the tree.</li>
           </ul>
-          
+          <p>Heaps are complete trees. That means that a heap with \(n\) nodes always has a \(O(log(n))\) height. In an array implementation:</p>
+          <ul>
+            <li>The root node is stored on index \(1\) and subsequent nodes are stored in order of level traversal from left to right.</li>
+            <li>The element at index \(0\) is often left unused. This is a convention that is not always respected, but it makes the following point more straight-forward.</li>
+            <li>Any node at a given index \(i\) has the following properties:
+              <ul>
+                <li>Its left child is located at index \(2i\)</li>
+                <li>Its right child is located at index \(2i + 1\)</li>
+                <li>Its parent is located at index \(\lfloor2 / i\rfloor\)</li>
+              </ul>
+            </li>
+          </ul>
         </div>
         <div>
           <img src="img/minheap.png" alt="Figure depicting a min heap">
