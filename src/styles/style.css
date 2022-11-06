@@ -199,6 +199,8 @@ table tbody tr:nth-of-type(even) {
   right: 10px;
   width: 3vw;
   height: 3vw;
+  min-width: 50px;
+  min-height: 50px;
   background-image: url("../../img/top.svg");
   background-repeat: no-repeat;
   background-size: contain;
@@ -220,5 +222,31 @@ table tbody tr:nth-of-type(even) {
 
   .container {
     width: 90%;
+  }
+
+  .top {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .text_twoimg_aligned {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 40px;
+  }
+
+  .text_twoimg_aligned div:first-child {
+    grid-column: 1 / 3;
+  }
+
+  .top {
+    width: 70px;
+    height: 70px;
+  }
+
+  .top:hover {
+    transform: translateY(-15px);
   }
 }
