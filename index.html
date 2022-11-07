@@ -9,6 +9,7 @@
   <link href="src/styles/prism.css" rel="stylesheet" />
   <script type="text/javascript" async src="src/scripts/MathJax/tex-chtml.js"></script>
   <script src="src/scripts/prism.js" defer></script>
+  <script src="src/scripts/scrollSync.js" defer></script>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <title>Algorithms and Data Structures</title>
 </head>
@@ -62,27 +63,28 @@
         </li>
         <li><a href="#aa">Analysis of Algorithms</a>
           <ol>
+            <li><a href="#master">Master Theorem</a>
             <li><a href="#search">Search Algorithms</a>
               <ol>
                 <li><a href="#linsearch">Linear Search</a></li>
-                <li><a href="#binsearch">Binary Search</a></li>
                 <li><a href="#jumpsearch">Jump Search</a></li>
+                <li><a href="#binsearch">Binary Search</a></li>
               </ol>
             </li>
-            <li><a href="#">Sorting Algorithms</a>
+            <li><a href="#sort">Sorting Algorithms</a>
               <ol>
-                <li><a href="#">Quick-sort</a></li>
-                <li><a href="#">Bubble-sort</a></li>
-                <li><a href="#">Merge-sort</a></li>
-                <li><a href="#">Selection-sort</a></li>
+                <li><a href="#selsort">Selection Sort</a></li>
+                <li><a href="#bubblesort">Bubble Sort</a></li>
+                <li><a href="#quicksort">Quick Sort</a></li>
+                <li><a href="#mergesort">Merge Sort</a></li>
               </ol>
             </li>
-            <li><a href="#">Complex Algorithms</a>
+            <li><a href="#complex">Complex Algorithms</a>
               <ol>
-                <li><a href="#">Rat in a maze Algorithm</a></li>
-                <li><a href="#">Dijkstra's Algorithm</a></li>
-                <li><a href="#">A* Algorithm</a></li>
-                <li><a href="#">Fast Fourier Transform</a></li>
+                <li><a href="#rat">Rat in a maze Algorithm</a></li>
+                <li><a href="#dijkstra">Dijkstra's Algorithm</a></li>
+                <li><a href="#a*">A* Algorithm</a></li>
+                <li><a href="#fft">Fast Fourier Transform</a></li>
               </ol>
             </li>
           </ol>
@@ -175,7 +177,7 @@
           <p>Later in this document, I’m going to to analyze various trivial and non-trivial algorithms using a technique called operation-count method which involves counting the number of primitive operations in an algorithm and summing them all together. The result usually consists of many constants other than the input size \(n\).</p>
           <p>Since for \(n \rightarrow \infty\) constants are much less dominant than \(n\), we approximate bounding functions to general classes of functions, some of them are shown in fig. 4.</p>
           <p>The general order of dominance of these function is as follows:</p>
-          <p>\(1 \ll log(n) \ll n \ll n \cdot log(n) \ll n^2 \ll 2^n \ll n!\)</p>
+          <p>\(1 \ll \log(n) \ll n \ll n\log(n) \ll n^2 \ll 2^n \ll n!\)</p>
         </div>
         <div>
           <img src="img/dominance.png" alt="Graph representing the growth of various general functions given an input n">
@@ -585,7 +587,7 @@
             <li>The left child of a node and all of its children hold a value lesser than that of the parent.</li>
             <li>The right child of a node and all of its children hold a value greater than that of the parent.</li>
           </ul>
-          <p>Binary search trees search complexity is dependant on how balanced the tree is. In the case of a perfect binary tree (<i>fig.19</i>), \(h = log(n)\), where \(h\) is the height of the tree and \(n\) is the total number of nodes in the tree.</p>
+          <p>Binary search trees search complexity is dependant on how balanced the tree is. In the case of a perfect binary tree (<i>fig.19</i>), \(h = \log(n)\), where \(h\) is the height of the tree and \(n\) is the total number of nodes in the tree.</p>
         </div>
         <div>
           <img src="img/binsearchtree.png" alt="Figure depicting a Perfect Binary search tree">
@@ -603,7 +605,7 @@
         <tbody>
           <tr>
             <td>Search</td>
-            <td>\(O(h) \approx O(log(n))\)</td>
+            <td>\(O(h) \approx O(\log(n))\)</td>
             <td>In a perfect binary tree, every time a child node is accessed the search space is halved.</td>
           </tr>
           <tr>
@@ -673,7 +675,7 @@
             <li><i><b>Min Heap:</b></i> It's a tree where every node holds a value that is less or equal than its children's held values. The smallest value in the min heap is located at the root of the tree.</li>
             <li><i><b>Max Heap:</b></i> It's a tree where every node holds a value that is greater or equal than its children's held values. The largest value in the max heap is located at the root of the tree.</li>
           </ul>
-          <p>Heaps are complete trees. That means that a heap with \(n\) nodes always has a \(O(log(n))\) height. In an array implementation:</p>
+          <p>Heaps are complete trees. That means that a heap with \(n\) nodes always has a \(O(\log(n))\) height. In an array implementation:</p>
           <ul>
             <li>The root node is stored on index \(1\) and subsequent nodes are stored in order of level traversal from left to right.</li>
             <li>The element at index \(0\) is often left unused. This is a convention that is not always respected, but it makes the following point more straight-forward.</li>
@@ -718,12 +720,12 @@
           </tr>
           <tr>
             <td>Insert</td>
-            <td>\(O(h) \approx O(log(n))\)</td>
+            <td>\(O(h) \approx O(\log(n))\)</td>
             <td>First, the node is appended to the end of the array. Then, it is bubbled up by comparing it to its parent node until heap's properties are restored.</td>
           </tr>
           <tr>
             <td>Delete</td>
-            <td>\(O(h) \approx O(log(n))\)</td>
+            <td>\(O(h) \approx O(\log(n))\)</td>
             <td>First, the node is swapped with the last element of the heap, then removed. Then, the swapped node is bubbled up or sifted down to restore heap properties.</td>
           </tr>
         </tbody>
@@ -788,6 +790,9 @@
           <li><i><b>Divide and conquer algorithms:</b></i> These algorithms try to divide the problem in smaller sub-problems to solve those instead. In some algorithms, the sub-problems solutions are sometimes recombined in the final solution. <a href="#mergesort">Merge sort</a> is a classic divide and conquer algorithm.</li>
         </ul>
       </div>
+    </div>
+    <div id="master" class="section">
+      <p class="subtitle">4.1. Master Theorem</p>
       <div class="text_img_aligned">
         <div>
           <p>Lastly, before diving into Algorithm Analysis, it is worth mentioning that many divide and conquer algorithm's time complexity can be calculated using the Master Theorem. It is a formula that helps solving recurrence relations of the form:</p>
@@ -806,26 +811,26 @@
         </div>
       </div>  
       <div>
-        <p>At depth \(d\), a complete tree has \(a^d\) nodes and the maximum depth of a recursion tree is \(log_b(n)\).<br>That means that to find out how many leaves the tree has we can calculate \(a^{log_b(n)}\) which, for logarithms properties equals to \(n^{log_b(a)}\).</p>
-        <p>A running time of \(\Theta(n^{log_b a})\) follows.</p>
+        <p>At depth \(d\), a complete tree has \(a^d\) nodes and the maximum depth of a recursion tree is \(\log_b(n)\).<br>That means that to find out how many leaves the tree has we can calculate \(a^{\log_b(n)}\) which, for logarithms properties equals to \(n^{\log_b(a)}\).</p>
+        <p>A running time of \(\Theta(n^{\log_b a})\) follows.</p>
         <p>Since in the master theorem – \(T(n) = aT(\frac{n}{b}) + f(n)\) – we're adding \(f(n)\) to the recursive calls complexity, the next step is comparing the two values and finding out which one dominates. There is three cases:</p>
         <div>
           $$
           \begin{aligned}
-          &\text{Case 1: if} \; f(n) = O(n^{log_b a - \epsilon}) \;\; \forall \;\; \epsilon > 0 \text{, then} \; T(n) = \Theta(n^{log_b a})\\
-          &\text{Case 2: if} \; f(n) = \Theta(n^{log_b a}) \text{, then} \; T(n) = \Theta(n^{log_b a}log(n))\\
-          &\text{Case 3: if} \; f(n) = \Omega(n^{log_b a + \epsilon}) \;\; \forall \;\; \epsilon > 0 \text{, then} \; T(n) = \Theta(f(n))
+          &\text{Case 1: if} \; f(n) = O(n^{\log_b(a) - \epsilon}) \;\; \forall \;\; \epsilon > 0 \text{, then} \; T(n) = \Theta(n^{\log_b(a)})\\
+          &\text{Case 2: if} \; f(n) = \Theta(n^{\log_b(a)}) \text{, then} \; T(n) = \Theta(n^{\log_b(a)}\log(n))\\
+          &\text{Case 3: if} \; f(n) = \Omega(n^{\log_b(a) + \epsilon}) \;\; \forall \;\; \epsilon > 0 \text{, then} \; T(n) = \Theta(f(n))
           \end{aligned}
           $$     
         </div>
       </div>
     </div>
     <div id="search" class="section">
-      <p class="subtitle">4.1. Search Algorithms</p>
+      <p class="subtitle">4.2. Search Algorithms</p>
       <p>Search algorithms are algorithms that try to find a specific element in a data structure. There are many different types of search algorithms, each with their own advantages and disadvantages.</p>
     </div>
     <div id="linsearch" class="section">
-      <p class="subtitle">4.1.1. Linear Search</p>
+      <p class="subtitle">4.2.1. Linear Search</p>
       <p>Linear search is a very simple search algorithm that works by iterating through the data structure and comparing each element with the element we're looking for. If the element is found, the algorithm returns the index of the element. If the element is not found, the algorithm returns -1.</p>
       <p>Linear search is a brute force algorithm, which means that it tries every possible combination and stops executing when it finds a solution.</p>
       <div class="algo_analysis">
@@ -859,19 +864,349 @@
           <tr>
             <td>Best case</td>
             <td>\(\Omega(1)\)</td>
-            <td>Deleting works by first finding the index of the pair by hashing the key and then setting the array location to null.</td>
+            <td>The best case happens when the element is found at the first index of the array.</td>
           </tr>
         </tbody>
       </table>
     </div>
+    <div id="jumpsearch" class="section">
+      <p class="subtitle">4.2.2. Jump Search</p>
+      <p>Jump search is a search algorithm for sorted arrays. It works by jumping a fixed number of steps at a time, and then doing a linear search on the elements in that block – in case the jump finds an element greater than the searched element. If the element is found, the algorithm returns the index of the element. If the element is not found, the algorithm returns -1.</p>
+      <p>Jump search is a divide and conquer algorithm, which means that it divides the problem in smaller sub-problems to solve those instead. In this case, the sub-problems are the blocks of the array.</p>
+      <p>The optimal step size is \(s=\sqrt{n}\), since in the worst case \(\frac{n}{s}\) steps are made, with the addition of \(s-1\) steps for the linear search. \(\sqrt{n}\) provides the minimum amount of steps for \(\frac{n}{s} + (m - 1)\).</p>
+      <div class="algo_analysis">
+        <div>
+          <pre data-src="src/code/jumpsearch.cpp"></pre>
+        </div>
+        <div>
+          <pre data-src="src/analysis/jumpsearch.txt" class="no-line-numbers"></pre>
+        </div>
+        <p class="img_caption">Analysis of Jump Search</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Input size = \(n\)</th>
+            <th>Time complexity</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Worst case</td>
+            <td>\(O(\sqrt{n})\)</td>
+            <td>The worst case in jump search happens when the element we're looking for is either at the second to last index, or non existent.</td>
+          </tr>
+          <tr>
+            <td>Average case</td>
+            <td>\(\Theta(\sqrt{n})\)</td>
+            <td>The average case still depends on the step size.</td>
+          </tr>
+          <tr>
+            <td>Best case</td>
+            <td>\(\Omega(1)\)</td>
+            <td>The best case happens when the element is found after the first jump.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="binsearch" class="section">
+      <p class="subtitle">4.2.3. Binary Search</p>
+      <div class="text_code">
+        <div>
+          <p>Binary search is a search algorithm for sorted arrays. It works by dividing the array in half and checking if the element we're looking for is greater or lesser than the current element. The algorithms then proceeds to only look in one half of the array, dividing that in two again and so on. If the element is found, the algorithm returns the index of the element. If the element is not found, the algorithm returns -1.</p>
+          <p>Binary search is a divide and conquer algorithm, which means that it divides the problem in smaller sub-problems to solve those instead. In this case, the sub-problems are the halves of the array.</p>
+          <p>To calculate the complexity of the recursive implementation of the binary search algorithm, we can make use of the <a href="#master">Master Theorem</a>. We just need to plug these values in it:</p>
+          <ul>
+            <li>\(a=1\) - since there's only one sub-problem for every recursion.</li>
+            <li>\(b=2\) - since the problem space is halved for every recursion.</li>
+            <li>\(f(n)=O(1)\) - since the work done outside of recursive calls is upper bounded by \(O(1)\).</li>
+          </ul>
+        </div>
+        <div>
+          <pre data-src="src/code/binsearch.cpp"></pre>
+          <p class="img_caption">C++ implementation of Binary Search</p>
+        </div>
+      </div>
+      <div>
+        <p>We have to find out which case of the theorem we're looking at. To do so, we must compare \(n^{\log_b(a)}\) to \(O(1)\).</p>
+        <div>
+          $$
+          \begin{aligned}
+          n^{\log_b(a)} &= n^{\log_2(1)} \\
+          n^{\log_2(1)} &= n^0 \\
+          n^0 &= 1 \\
+          1 &= O(1)
+          \end{aligned}
+          $$
+        </div>
+        <p>Since \(f(n)\) and \(n^{\log_b(a)}\) are asymptotically equal, we're looking at case 2 of the Master Theorem, that states that for binary search:</p>
+        <div>
+          $$
+          \begin{aligned}
+          T(n) &= \Theta(n^{\log_b(a)}\log(n)) \\
+          T(n) &= \Theta(\log(n))
+          \end{aligned}
+          $$
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Input size = \(n\)</th>
+            <th>Time complexity</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Worst case</td>
+            <td>\(O(\log{n})\)</td>
+            <td>The worst case in binary search is either when we find the desired element after reducing the search space to that single element or when the element doesn't exist.</td>
+          </tr>
+          <tr>
+            <td>Average case</td>
+            <td>\(\Theta(\log{n})\)</td>
+            <td>The average case is finding the element after \(\frac{\log(n)}{2}\) steps.</td>
+          </tr>
+          <tr>
+            <td>Best case</td>
+            <td>\(\Omega(1)\)</td>
+            <td>The best case is when the element is found in the middle of the array.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="sort" class="section">
+      <p class="subtitle">4.3. Sorting Algorithms</p>
+      <p>Sorting algorithms are algorithms that take an array of elements and rearrange them in a specific order. The order can be ascending or descending, depending on the algorithm.</p>
+    </div>
+    <div id="selsort" class="section">
+      <p class="subtitle">4.3.1. Selection Sort</p>
+      <p>Selection sort is a sorting algorithm that works by finding the smallest element in the array and swapping it with the first element. Then, it finds the second smallest element and swaps it with the second element. It continues doing this until the array is sorted.</p>
+      <p>Selection sort is an algorithm that is easy to implement, but it has a very bad time complexity.</p>
+      <div class="algo_analysis">
+        <div>
+          <pre data-src="src/code/selsort.cpp"></pre>
+        </div>
+        <div>
+          <pre data-src="src/analysis/selsort.txt" class="no-line-numbers"></pre>
+        </div>
+        <p class="img_caption">Analysis of Selection Sort</p>
+      </div>
+      <p>As we can see, the time complexity of selection sort is \(O(n^2)\). This is because the inner <i>for loop</i> has to iterate first \(n\) times, then \(n - 1\) times \(...1\). That is called an arithmetic series, and can be calculated as follows:</p>
+      <div>
+        $$
+        \begin{aligned}
+        \sum_{i=1}^{n}i &= \frac{n(n + 1)}{2} \\
+        \frac{n(n + 1)}{2} &= O(n^2)
+        \end{aligned}
+        $$
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Input size = \(n\)</th>
+            <th>Time complexity</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Worst case</td>
+            <td>\(O(n^2)\)</td>
+            <td>The case doesn't matter. Selection Sort always runs with the same time complexity.</td>
+          </tr>
+          <tr>
+            <td>Average case</td>
+            <td>\(\Theta(n^2)\)</td>
+            <td>The case doesn't matter. Selection Sort always runs with the same time complexity.</td>
+          </tr>
+          <tr>
+            <td>Best case</td>
+            <td>\(\Omega(n^2)\)</td>
+            <td>The case doesn't matter. Selection Sort always runs with the same time complexity.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="bubblesort" class="section">
+      <p class="subtitle">4.3.2. Bubble Sort</p>
+      <p>Bubble sort is a sorting algorithm that works by comparing two adjacent elements and swapping them if they're not in the correct order. It continues doing this until the array is sorted.</p>
+      <div class="algo_analysis">
+        <div>
+          <pre data-src="src/code/bubblesort.cpp"></pre>
+        </div>
+        <div>
+          <pre data-src="src/analysis/bubblesort.txt" class="no-line-numbers"></pre>
+        </div>
+        <p class="img_caption">Analysis of Selection Sort</p>
+      </div>
+      <p>Again, as with <a href="selsort">Selection Sort</a>, we have an arithmetic series. </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Input size = \(n\)</th>
+            <th>Time complexity</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Worst case</td>
+            <td>\(O(n^2)\)</td>
+            <td>The worst case is when the array is sorted in reverse order.</td>
+          </tr>
+          <tr>
+            <td>Average case</td>
+            <td>\(\Theta(n^2)\)</td>
+            <td>The average case is when the array is randomly sorted.</td>
+          </tr>
+          <tr>
+            <td>Best case</td>
+            <td>\(\Omega(n)\)</td>
+            <td>The best case is when the array is already sorted. The algorithm will go through the array once and since no swaps happen, quit the function.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="quicksort" class="section">
+      <p class="subtitle">4.3.3. Quick Sort</p>
+      <div class="text_code">
+        <div>
+          <p>Quick sort is a sorting algorithm that works by choosing a pivot element and partitioning the array around it. The elements that are smaller than the pivot are placed to the left of it, and the elements that are larger than the pivot are placed to the right of it. Then, the algorithm recursively sorts the left and right subarrays.</p>
+          <p>To calculate the complexity of the recursive implementation of the quick sort algorithm, we can make use of the <a href="#master">Master Theorem</a>. We just need to plug these values in it:</p>
+          <ul>
+            <li>\(a=2\) - since there's two sub-problem for every recursion – the two halves of the array.</li>
+            <li>\(b=2\) - since the problem space is halved for every recursion.</li>
+            <li>\(f(n)=O(n)\) - since the work done outside of recursive calls is upper bounded by \(O(n)\).</li>
+          </ul>
+        </div>
+        <div>
+          <pre data-src="src/code/quicksort.cpp"></pre>
+          <p class="img_caption">C++ implementation of Quick Sort</p>
+        </div>
+      </div>
+      <div>
+        <p>We have to find out which case of the theorem we're looking at. To do so, we must compare \(n^{\log_b(a)}\) to \(O(n)\).</p>
+        <div>
+          $$
+          \begin{aligned}
+          n^{\log_b(a)} &= n^{\log_2(2)} \\
+          n^{\log_2(2)} &= n^1 \\
+          n^1 &= n \\
+          n &= O(n)
+          \end{aligned}
+          $$
+        </div>
+        <p>Since \(f(n)\) and \(n^{\log_b(a)}\) are asymptotically equal, we're looking at case 2 of the Master Theorem, that states that for quick sort:</p>
+        <div>
+          $$
+          \begin{aligned}
+          T(n) &= \Theta(n^{\log_b(a)}\log(n)) \\
+          T(n) &= \Theta(n\log(n))
+          \end{aligned}
+          $$
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Input size = \(n\)</th>
+            <th>Time complexity</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Worst case</td>
+            <td>\(O(n^2)\)</td>
+            <td>If the pivot is chosen non randomly (either start or end of array) some input can force \(n^2\) complexity.</td>
+          </tr>
+          <tr>
+            <td>Average case</td>
+            <td>\(\Theta(n\log(n))\)</td>
+            <td>The average case is the same as the best case.</td>
+          </tr>
+          <tr>
+            <td>Best case</td>
+            <td>\(\Omega(n\log(n))\)</td>
+            <td>The average case is when the pivot is chosen so that it splits the array in half.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="mergesort" class="section">
+      <p class="subtitle">4.3.4. Merge Sort</p>
+      <div class="text_code">
+        <div>
+          <p>Merge sort is a sorting algorithm that works by dividing the array into two halves, sorting each half, and then merging the two halves together.</p>
+          <p>It works by recursively splitting the array in smaller and smaller parts until the subarrays are of length 1, to then merge them again after sorting them.</p>
+          <p>To calculate the complexity of the recursive implementation of the merge sort algorithm, we can make use of the <a href="#master">Master Theorem</a>. We just need to plug these values in it:</p>
+          <ul>
+            <li>\(a=2\) - since there's two sub-problem for every recursion – the two halves of the array.</li>
+            <li>\(b=2\) - since the problem space is halved for every recursion.</li>
+            <li>\(f(n)=O(n)\) - since the work done outside of recursive calls is upper bounded by \(O(n)\).</li>
+          </ul>
+        </div>
+        <div>
+          <pre data-src="src/code/mergesort.cpp"></pre>
+          <p class="img_caption">C++ implementation of Quick Sort</p>
+        </div>
+      </div>
+      <div>
+        <p>We have to find out which case of the theorem we're looking at. To do so, we must compare \(n^{\log_b(a)}\) to \(O(n)\).</p>
+        <div>
+          $$
+          \begin{aligned}
+          n^{\log_b(a)} &= n^{\log_2(2)} \\
+          n^{\log_2(2)} &= n^1 \\
+          n^1 &= n \\
+          n &= O(n)
+          \end{aligned}
+          $$
+        </div>
+        <p>Since \(f(n)\) and \(n^{\log_b(a)}\) are asymptotically equal, we're looking at case 2 of the Master Theorem, exactly like <a href="#quicksort">Quick Sort</a>:</p>
+        <div>
+          $$
+          \begin{aligned}
+          T(n) &= \Theta(n^{\log_b(a)}\log(n)) \\
+          T(n) &= \Theta(n\log(n))
+          \end{aligned}
+          $$
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Input size = \(n\)</th>
+            <th>Time complexity</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Worst case</td>
+            <td>\(O(n\log(n))\)</td>
+            <td>The case doesn't matter. Merge Sort always runs with the same time complexity.</td>
+          </tr>
+          <tr>
+            <td>Average case</td>
+            <td>\(\Theta(n\log(n))\)</td>
+            <td>The case doesn't matter. Merge Sort always runs with the same time complexity.</td>
+          </tr>
+          <tr>
+            <td>Best case</td>
+            <td>\(\Omega(n\log(n))\)</td>
+            <td>The case doesn't matter. Merge Sort always runs with the same time complexity.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="complex" class="section">
+      <p class="subtitle">4.4. Complex Algorithms</p>
+      <p>Until now, we analyzed common algorithms. In general, sorting and searching arrays is often considered trivial. We're now going to go over some more complex algorithms. Some of these have more concrete applications in real life.</p>
+    </div>
   </div>
 </body>
-<!-- <div class="algo_analysis">
-        <div>
-          <pre data-src="src/code/linsearch.cpp"></pre>
-        </div>
-        <div>
-          <pre data-src="src/analysis/linsearch.txt" class="no-line-numbers"></pre>
-        </div>
-      </div> -->
 </html>

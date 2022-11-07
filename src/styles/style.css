@@ -25,6 +25,7 @@ hr {
 pre {
   border-radius: 5px;
   max-height: 400px;
+  max-width: 100%;
 }
 
 a, 
@@ -163,10 +164,17 @@ table tbody tr:nth-of-type(even) {
 .algo_analysis {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  overflow: auto;
 }
 
 .algo_analysis div:nth-of-type(1) pre {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   border-radius: 5px 0px 0px 5px;
+}
+
+.algo_analysis div:nth-of-type(1) pre::-webkit-scrollbar {
+  display: none;
 }
 
 .algo_analysis div:nth-of-type(2) pre {
