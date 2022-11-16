@@ -48,6 +48,7 @@
             <li><a href="#linked">Linked List</a></li>
             <li><a href="#stack">Stack</a></li>
             <li><a href="#queue">Queue</a></li>
+            <li><a href="#graph">Graph</a></li>
             <li><a href="#tree">Tree</a>
               <ol>
                 <li><a href="#bst">Binary Search Tree</a></li>
@@ -56,17 +57,16 @@
               </ol>
             </li>
             <li><a href="#heap">Heap</a></li>
-            <li><a href="#graph">Graph</a></li>
             <li><a href="#hash">Hash table</a></li>
           </ol>
         </li>
-        <li><a href="#">Analysis of Algorithms</a>
+        <li><a href="#aa">Analysis of Algorithms</a>
           <ol>
-            <li><a href="#">Search Algorithms</a>
+            <li><a href="#search">Search Algorithms</a>
               <ol>
-                <li><a href="#">Linear Search</a></li>
-                <li><a href="#">Binary Search</a></li>
-                <li><a href="#">Depth-First Search</a></li>
+                <li><a href="#linsearch">Linear Search</a></li>
+                <li><a href="#binsearch">Binary Search</a></li>
+                <li><a href="#jumpsearch">Jump Search</a></li>
               </ol>
             </li>
             <li><a href="#">Sorting Algorithms</a>
@@ -435,12 +435,127 @@
         </tbody>
       </table>
     </div>
+    <div id="graph" class="section">
+      <p class="subtitle">3.5. Graph</p>
+      <div class="text_four_images_below">
+        <div>
+          <p>Graphs are a non-linear data structure which consists of vertices and edges connecting them. They're the base of other data structures like <a href="#tree" style="text-decoration: underline;">trees</a> and <a href="#heap" style="text-decoration: underline;">heaps</a>. Graphs can be used to model real life relationships between entities of any type. For example, an undirected graph can be used to represent friendships in a social network, or a weighted directed graph could represent a road network. They're generally not space efficient and time complexity of operations depends on the way they're implemented. Mathematically, a graph is represented with the notation:</p>
+          <div>
+            $$
+            G = (V, E)
+            $$
+          </div>
+          <p>Where \(V\) is a set of vertices and \(E\) a set of edges. Every edge is an ordered pair of vertices.</p>
+        </div>
+        <div>
+          <img src="img/graph.png" alt="Figure depicting a graph">
+          <p class="img_caption">fig. 13 - Graph</p>
+        </div>
+        <div>
+          <img src="img/acyclicalgraph.png" alt="Figure depicting an acyclical graph">
+          <p class="img_caption">fig. 14 - Acyclycal graph</p>
+        </div>
+        <div>
+          <img src="img/directedgraph.png" alt="Figure depicting a directedgraph">
+          <p class="img_caption">fig. 15 - Directed graph</p>
+        </div>
+        <div>
+          <img src="img/weightedgraph.png" alt="Figure depicting a weighted graph">
+          <p class="img_caption">fig. 16 - Weighted graph</p>
+        </div>
+      </div>
+      <div>
+        <p>They can be represented in two ways:</p>
+          <ul>
+            <li><i><b>Adjacency Matrix:</b></i> It's a two-dimensional array where the rows and columns represent the vertices of the graph. The value at index \([i][j]\) is \(1\) if there's an edge between vertex \(i\) and vertex \(j\), and \(0\) otherwise. To represent the graph in <i>fig. 13</i>:</li>
+            <div>
+              <img src="img/adjmatrix.png" alt="Adjacency matrix for graph in fig. 13" style="margin: auto; max-height: 300px;">
+            </div>
+            <li><i><b>Adjacency List:</b></i> It's an array of linked lists, where every linked list represents one vertex. Every element in the linked list represents one adjacent vertex. To represent the graph in <i>fig. 13</i>:</li>
+            <div>
+              <img src="img/adjlist.png" alt="Adjacency list for graph in fig. 13" style="margin: auto; max-height: 300px;">
+            </div>
+          </ul>
+        <p>Graphs have various adjectives, based on the properties they have. Here's a few of them:</p>
+        <ul>
+          <li><i><b>Complete:</b></i> A graph is complete when every vertex is connected to every other vertex.</li>
+          <li><i><b>Acyclical:</b></i> A graph is acyclical if it doesn't have any cycles. <i>fig. 14</i> is an example of an acyclical graph.</li>
+          <li><i><b>Directed:</b></i> A graph is directed if the edges have a direction. <i>fig. 15</i> is an example of a directed graph.</li>
+          <li><i><b>Undirected:</b></i> A graph is undirected if the edges have no direction. That means that the edges are bidirectional.</li>
+          <li><i><b>Weighted:</b></i> A graph is weighted if the edges have a weight associated with them. <i>fig. 16</i> is an example of a weighted graph.</li>
+        </ul>
+      </div>
+      <p>Graphs stored with adjacency matrices have a space complexity of \(O(|V|^2)\), and the time complexity of the implementation is described in the table below. Since \(V\) and \(E\) are sets, the "\(|\)" symbol is needed to imply cardinality.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Vertices = \(V\)<br>Edges = \(E\)</th>
+            <th>Time complexity</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Add vertex</td>
+            <td>\(O(|V|^2)\)</td>
+            <td>Arrays have a fixed size, and by adding a vertex we have to copy the whole matrix over.</td>
+          </tr>
+          <tr>
+            <td>Add edge</td>
+            <td>\(O(1)\)</td>
+            <td>To add an edge between two existing vertices, we just need to access (\(O(1)\)) and change \(0\) to \(1\).</td>
+          </tr>
+          <tr>
+            <td>Remove vertex</td>
+            <td>\(O(|V|^2)\)</td>
+            <td>In the worst case, all columns in the matrix have to be shifted down by one, before removing one column and one row.</td>
+          </tr>
+          <tr>
+            <td>Remove edge</td>
+            <td>\(O(1)\)</td>
+            <td>To remove an edge between two existing vertices, we just need to access (\(O(1)\)) and change \(1\) to \(0\).</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Graphs stored with adjacency lists have a space complexity of \(O(|V|+|E|)\). The time complexity of the implementation is described in the table below.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Vertices = \(V\)<br>Edges = \(E\)</th>
+            <th>Time complexity</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Add vertex</td>
+            <td>\(O(|V|)\)</td>
+            <td>Arrays have a fixed size, and by adding a vertex we have to copy the whole array over.</td>
+          </tr>
+          <tr>
+            <td>Add edge</td>
+            <td>\(O(1)\)</td>
+            <td>To add an edge between two existing vertices, we just need to access (\(O(1)\)) and add the edge to the list accordingly.</td>
+          </tr>
+          <tr>
+            <td>Remove vertex</td>
+            <td>\(O(|V|+|E|)\)</td>
+            <td>To remove a vertex we might have to iterate over every vertex, and then over every vertice's edge.</td>
+          </tr>
+          <tr>
+            <td>Remove edge</td>
+            <td>\(O(1)\)</td>
+            <td>To remove an edge between two existing vertices, we just need to access (\(O(1)\)) and remove the edge from the list accordingly.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <div id="tree" class="section">
-      <p class="subtitle">3.5. Tree</p>
+      <p class="subtitle">3.6. Tree</p>
       <div class="text_twoimg_aligned">
         <div>
           <p>Trees are non-linear data structures that consist of nodes and edges. Every node consists of data and pointers to other nodes. The top node is also called root node and has no parent node. A node is a leaf or external node when it doesn't point to any other node – they're usually located towards the bottom of the tree if the tree is balanced. Edges are basically the connections between nodes, and there is a maximum of \(n - 1\) edges in a tree that has \(n\) nodes.</p>
-          <p>Since trees can be implemented in many different ways, there are some properties that describe them. I'll take into consideration <i>fig. 13</i> while defining them: </p>
+          <p>Since trees can be implemented in many different ways, there are some properties that describe them. I'll take into consideration <i>fig. 17</i> while defining them: </p>
           <ul>
             <li><i><b>Degree: </b></i>The maximum number of children nodes allowed for every node. In this case, \(3\).</li>
             <li><i><b>Depth: </b></i>The number of edges between a node and the root node. In this case, depth is \(0\) for the root node, \(2\) for the rightmost node and \(3\) for the leftmost one.</li>
@@ -452,16 +567,16 @@
         </div>
         <div>
           <img src="img/nonbinarytree.png" alt="Figure depicting a degree three tree">
-          <p class="img_caption">fig. 13 – Degree 3 tree</p>
+          <p class="img_caption">fig. 17 – Degree 3 tree</p>
         </div>
         <div>
           <img src="img/unbalancedtree.png" alt="Figure depicting an degree two tree">
-          <p class="img_caption">fig. 14 – Binary tree</p>
+          <p class="img_caption">fig. 18 – Binary tree</p>
         </div>
       </div>
     </div>
     <div id="bst" class="section">
-      <p class="subtitle">3.5.1. Binary Search Tree</p>
+      <p class="subtitle">3.6.1. Binary Search Tree</p>
       <div class="text_img_aligned">
         <div>
           <p>A binary search tree is a particular type of binary tree where:</p>
@@ -469,11 +584,11 @@
             <li>The left child of a node and all of its children hold a value lesser than that of the parent.</li>
             <li>The right child of a node and all of its children hold a value greater than that of the parent.</li>
           </ul>
-          <p>Binary search trees search complexity is dependant on how balanced the tree is. In the case of a perfect binary tree (<i>fig.15</i>), \(h = log(n)\), where \(h\) is the height of the tree and \(n\) is the total number of nodes in the tree.</p>
+          <p>Binary search trees search complexity is dependant on how balanced the tree is. In the case of a perfect binary tree (<i>fig.19</i>), \(h = log(n)\), where \(h\) is the height of the tree and \(n\) is the total number of nodes in the tree.</p>
         </div>
         <div>
           <img src="img/binsearchtree.png" alt="Figure depicting a Perfect Binary search tree">
-          <p class="img_caption">fig. 15 – Perfect Binary Search Tree</p>
+          <p class="img_caption">fig. 19 – Perfect Binary Search Tree</p>
         </div>
       </div>
       <table>
@@ -515,7 +630,7 @@
       <p>Reality is trees can become unbalanced extremely quick while inserting and deleting nodes, leading to a search complexity of \(O(n)\). That is why computer scientists came up with the concept of self-balancing trees.</p>
     </div>
     <div id="rbt" class="section">
-      <p class="subtitle">3.5.2. Red-Black Binary Tree</p>
+      <p class="subtitle">3.6.2. Red-Black Binary Tree</p>
       <div class="text_img_aligned">
         <div>
           <p>Red-black binary trees add a new "color" property to their nodes, which can be either <span style="color: red;">red</span> or black. They implement some more rules on the nodes behaviour based on their color:</p>
@@ -529,27 +644,27 @@
         </div>
         <div>
           <img src="img/rbtree.png" alt="Figure depicting a red-black binary tree">
-          <p class="img_caption">fig. 16 - Red-Black Binary Tree</p>
+          <p class="img_caption">fig. 20 - Red-Black Binary Tree</p>
         </div>
       </div>
     </div>
     <div id="avl" class="section">
-      <p class="subtitle">3.5.3. AVL Binary Tree</p>
+      <p class="subtitle">3.6.3. AVL Binary Tree</p>
       <div class="text_img_below">
         <div>
           <p>An AVL tree (named after its inventors – Adelson-Velsky,Landis) is a self-balancing tree that restores balance if needed after every insertion or deletion. It does that by checking that the height of every node's subtrees does not exceed a threshold, which is usually \(1\). In mathematical terms, an AVL tree has to satisfy \(|B(N)| \leq 1\) for every given node \(N\), where \(B(N) = h_l - h_r\) with \(h_l, h_r\) being the height of the left and right child subtrees respectively. </p>
           <p>When \(B(N) > 1\), the tree is left-heavy, and requires either a right rotation or a left-right rotation.</p>
           <p>When \(B(N) < -1\), the tree is right-heavy, and requires either a left rotation or a right-left rotation.</p>
-          <p>More on rotations in <i>fig. 17</i>.</p>
+          <p>More on rotations in <i>fig. 21</i>.</p>
         </div>
         <div>
           <img src="img/avlrotations.png" alt="Figure depicting AVL tree rotations">
-          <p class="img_caption">fig. 17 - AVL tree rotations</p>
+          <p class="img_caption">fig. 21 - AVL tree rotations</p>
         </div>
       </div>
     </div>
     <div id="heap" class="section">
-      <p class="subtitle">3.6. Heap</p>
+      <p class="subtitle">3.7. Heap</p>
       <div class="text_twoimg_aligned">
         <div>
           <p>Heaps are data structures that are commonly used in Heap Sort and to implement Priority queues. They can be implemented in two different ways:</p>
@@ -565,20 +680,103 @@
               <ul>
                 <li>Its left child is located at index \(2i\)</li>
                 <li>Its right child is located at index \(2i + 1\)</li>
-                <li>Its parent is located at index \(\lfloor2 / i\rfloor\)</li>
+                <li>Its parent is located at index \(\lfloor i / 2\rfloor\)</li>
               </ul>
             </li>
           </ul>
         </div>
         <div>
           <img src="img/minheap.png" alt="Figure depicting a min heap">
-          <p class="img_caption">fig. 18 - Min Heap</p>
+          <p class="img_caption">fig. 22 - Min Heap</p>
         </div>
         <div>
           <img src="img/maxheap.png" alt="Figure depicting a max heap">
-          <p class="img_caption">fig. 19 - Max Heap</p>
+          <p class="img_caption">fig. 23 - Max Heap</p>
         </div>
       </div>
+      <div>
+        <p>The process of "sorting" an unordered array to follow heap's rules is usually referred to as "building" the heap. It's a recursive process that starts from the bottom of the tree (\(h=0\)) and works its way to the top. For every subtree iteration, the root value is compared to its children values and bubbled down if needed.</p>
+      </div>
+      <div>
+        <pre data-src="src/code/heap.cpp"></pre>
+        <p class="img_caption">C++ implementation of Min and Max Heap</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>N. of nodes = \(n\) <br> Height = \(h\)</th>
+            <th>Time complexity</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Search</td>
+            <td>\(O(n)\)</td>
+            <td>Searching a non-root element might require searching through every node in the heap.</td>
+          </tr>
+          <tr>
+            <td>Insert</td>
+            <td>\(O(h) \approx O(log(n))\)</td>
+            <td>First, the node is appended to the end of the array. Then, it is bubbled up by comparing it to its parent node until heap's properties are restored.</td>
+          </tr>
+          <tr>
+            <td>Delete</td>
+            <td>\(O(h) \approx O(log(n))\)</td>
+            <td>First, the node is swapped with the last element of the heap, then removed. Then, the swapped node is bubbled up or sifted down to restore heap properties.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="hash" class="section">
+      <p class="subtitle">3.8. Hash Table</p>
+      <div class="text_img_aligned">
+        <div>
+          <p>A Hash Table is a key-value pair based data structure which uses hash functions that return an integer \(i\) which is then used to store the data in an array at index \(i\). Hash functions work by doing operations on the key value which are not reversible (i.e. impossible to derive the key from the hash).</p>
+        </div>
+        <div>
+          <img src="img/hashtable.png" alt="Figure depicting a hash table">
+          <p class="img_caption">fig. 24 - Hash table</p></div>
+      </div>
+      <div>
+        <p>Sometimes, the hash function generates an index that is already occupied by another key-value pair. That is called collision, and there's various ways to address the issue:</p>
+        <ul>
+          <li><i><b>Linear/quadratic probing:</b></i> When a collision occurs, linear probing searches for the first available empty index. Quadratic probing does the same but "skips" indexes by incrementing an integer quadratically until there's no collision.</li>
+          <li><i><b>Double hashing:</b></i> Generates a new hash when a collision occurs. More efficient than Linear/quadratic probing but inconsistent.</li>
+          <li><i><b>Chaining:</b></i> Chaining stores the new key-value pair on the index even if there is a collision. The pairs are stored in a linked list.</li>
+        </ul>
+        <p>The time complexity in the table below refers to a hash table that uses chaining to deal with collisions.</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Input size = \(n\)</th>
+            <th>Time complexity</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Search</td>
+            <td>\(O(1)\)</td>
+            <td>Searching for a key value pair is done by hashing the key and then accessing the index generated by the function.</td>
+          </tr>
+          <tr>
+            <td>Insert</td>
+            <td>\(O(1)\)</td>
+            <td>Inserting only involves hashing the key and inserting the pair at the index returned by the hash function.</td>
+          </tr>
+          <tr>
+            <td>Delete</td>
+            <td>\(O(1)\)</td>
+            <td>Deleting works by first finding the index of the pair by hashing the key and then setting the array location to null.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <hr>
+    <div id="aa" class="section">
+      <p class="subtitle">4. Analysis of Algorithms</p>
     </div>
   </div>
 </body>
