@@ -84,7 +84,6 @@
                 <li><a href="#rat">Rat in a maze Algorithm</a></li>
                 <li><a href="#dijkstra">Dijkstra's Algorithm</a></li>
                 <li><a href="#a*">A* Algorithm</a></li>
-                <li><a href="#fft">Fast Fourier Transform</a></li>
               </ol>
             </li>
           </ol>
@@ -136,7 +135,7 @@
         </div>
         <div>
           <img src="img/upper.png" alt="Graph representing an example of upper bounding function for f(n)">
-          <p class="img_caption">fig. 1</p>
+          <p class="img_caption">fig. 1 – from <a href="https://www.programiz.com/dsa/asymptotic-notations">Programiz</a></p>
         </div>
       </div>
     </div>
@@ -151,7 +150,7 @@
         </div>
         <div>
           <img src="img/lower.png" alt="Graph representing an example of lower bounding function for f(n)">
-          <p class="img_caption">fig. 2</p>
+          <p class="img_caption">fig. 2 – from <a href="https://www.programiz.com/dsa/asymptotic-notations">Programiz</a></p>
         </div>
       </div>
     </div>
@@ -166,7 +165,7 @@
         </div>
         <div>
           <img src="img/tight.png" alt="Graph representing an example of tight bounding function for f(n)">
-          <p class="img_caption">fig. 3</p>
+          <p class="img_caption">fig. 3 – from <a href="https://www.programiz.com/dsa/asymptotic-notations">Programiz</a></p>
         </div>
       </div>
     </div>
@@ -1206,6 +1205,84 @@
     <div id="complex" class="section">
       <p class="subtitle">4.4. Complex Algorithms</p>
       <p>Until now, we analyzed common algorithms. In general, sorting and searching arrays is often considered trivial. We're now going to go over some more complex algorithms. Some of these have more concrete applications in real life.</p>
+    </div>
+    <div id="rat" class="section">
+      <p class="subtitle">4.4.1. Rat in a maze algorithm</p>
+      <div class="text_code">
+        <div>
+          <p>The rat in a maze algorithm is a backtracking algorithm that solves the following problem:</p>
+          <p>Given a maze, represented by a 2D array, find a path from the top left corner to the bottom right corner. The maze is surrounded by walls, and the rat can move in all four directions – up, down, left and right.</p>
+          <p>The algorithm works by recursively trying to move the rat in all directions. If the rat can't move in any direction, it backtracks and tries another path.</p>
+          <p>This algorithms is a good example of a backtracking algorithm.</p>
+          <p>In this implementation of the algorithm, the matrix that holds the maze has the same width and height, so the total number of cells in the maze is \(n^2\). For every cell, there is four possibilities of movement – also called unvisited neighbours.</p>
+          <p>Since the algorithm tries every possible path, the time complexity is \(O(4^{n^2})\).</p>
+        </div>
+        <div>
+          <pre data-src="src/code/rat.cpp"></pre>
+          <p class="img_caption">C++ implementation of the Rat in a Maze algorithm</p>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Input size = \(n^2\)</th>
+            <th>Time complexity</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Worst case</td>
+            <td>\(O(4^{n^2})\)</td>
+            <td>In the worst case, the rat has to traverse every single cell and check its four neighbours once.</td>
+          </tr>
+          <tr>
+            <td>Average case</td>
+            <td>\(\Theta(4^{n^2})\)</td>
+            <td>The average case is the same as the worst case.</td>
+          </tr>
+          <tr>
+            <td>Best case</td>
+            <td>\(\Omega(4^{n^2})\)</td>
+            <td>The best case is the same as the worst case.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="dijkstra" class="section">
+      <p class="subtitle">4.4.2. Dijkstra's Algorithm</p>
+      <div>
+        <p>Dijkstra's Algorithm is one of the most famous algorithm ever invented. It takes its name from its inventor, computer scientist <i><b>Edsger Wybe Dijkstra</b></i>. The algorithm is used to find the shortest path between two vertices in a weighted graph. It requires the weights on every edge to be positive to work.</p>
+        <p>The algorithm works by maintaining a set of vertices that have been visited, and a set of vertices that haven't been visited. The algorithm starts by adding the source vertex to the set of visited vertices, and all other vertices to the set of unvisited vertices. Then, the algorithm iterates over the unvisited vertices, and finds the vertex with the smallest distance from the source vertex. The algorithm then adds this vertex to the set of visited vertices, and removes it from the set of unvisited vertices. The algorithm then updates the distances of all unvisited vertices that are adjacent to the newly visited vertex. The algorithm repeats this process until all vertices have been visited.</p>
+        <p>The algorithm is a good example of a greedy algorithm. It always chooses the vertex with the smallest distance from the source vertex. This is a good heuristic, but it doesn't always lead to the optimal solution.</p>
+      </div>
+      <div>
+        <pre data-src="src/code/dijkstra.cpp"></pre>
+        <p class="img_caption">C++ implementation of Dijkstra's Algorithm - From <a href="https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/">geeksforgeeks.org</a>.</p>
+      </div>
+      <div>
+        <p>Dijkstra's algorithm has many steps, so to measure its time complexity we have to take them all into account:</p>
+        <ul>
+          <li>Getting a node from the heap has a time complexity of \(O(\log(|V|)\)</li>
+          <li>Comparing the costs of all edges has a time complexity of \(O((|E|)\)</li>
+          <li>The length of the path returned by the algorithm can't be more than \(O(|V|)\)</li>
+        </ul>
+        <p>Since the algorithm iterates over all vertices, the time complexity is \(O(|V|\log(|V|) + |E|)\). This is the same as \(O(|E|\log(|V|))\).</p>
+      </div>
+    </div>
+    <div id="a*" class="section">
+      <p class="subtitle">4.4.3. A* Algorithm</p>
+      <div>
+        <p>The A* algorithm is a pathfinding algorithm that is used to find the shortest path between two vertices in a weighted graph. It is a variant of Dijkstra's algorithm, and it is often used in games. The algorithm works by maintaining a set of vertices that have been visited, and a set of vertices that haven't been visited. The algorithm starts by adding the source vertex to the set of visited vertices, and all other vertices to the set of unvisited vertices. Then, the algorithm iterates over the unvisited vertices, and finds the vertex with the smallest distance from the source vertex. The algorithm then adds this vertex to the set of visited vertices, and removes it from the set of unvisited vertices. The algorithm then updates the distances of all unvisited vertices that are adjacent to the newly visited vertex. The algorithm repeats this process until all vertices have been visited.</p>
+      </div>
+      <div>
+        <pre data-src="src/code/a*.cpp"></pre>
+        <p class="img_caption">C++ implementation of A* Algorithm - From <a href="https://www.geeksforgeeks.org/a-search-algorithm/">geeksforgeeks.org</a>.</p>
+      </div>
+      <div>
+        <p>Instead of just choosing the shortest distance from the source vertex, the A* algorithm also takes into account the distance from the destination vertex. This is done by adding the distance from the source vertex to the destination vertex to the distance from the source vertex to the current vertex.</p>
+        <p>This extremely efficient heuristic function allows the A* algorithm to often have best case scenarios of \(\Omega(e)\) where \(e\) is the number of edges between the start and the destination vertex. The worst case scenario has still a better complexity than Dijkstra, with \(O(|V|+|E|)\).</p>
+      </div>
     </div>
   </div>
 </body>
